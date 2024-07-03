@@ -209,6 +209,28 @@ namespace ProyectoFinal
                 return cadenaAdvertencia.ToString();
             }
 
+        public string VisualizarStock(int codigo)
+        {
+            // Creo una cadena en donde voy a almacenar el resultado
+            StringBuilder cadenaStock = new StringBuilder();
+
+            // Itero para cada uno de los depósitos de la lista de depósitos
+            foreach (IDeposito deposito in this.DepositosUsuario)
+            {
+                cadenaStock.AppendLine($"Para el depósito '{deposito.GetNombre}':");
+
+                // Itero para cada una de las secciones de la lista de secciones
+                foreach (ISeccion seccion in deposito.GetSecciones)
+                {
+                    // Agrego una cadena con la cantidad en stock del mismo
+                    cadenaStock.AppendLine($"   Cantidad en stock sección '{seccion.GetNombre}': {seccion.CantidadStock(codigo)}");
+                }
+            } 
+
+            // Retorno el diccionario con la información de stock total
+            return cadenaStock.ToString();
+        }
+
         /// <summary>
         /// Método getter para el nombre
         /// </summary>
