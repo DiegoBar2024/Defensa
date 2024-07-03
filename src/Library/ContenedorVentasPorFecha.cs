@@ -68,5 +68,36 @@ namespace ProyectoFinal
         {
             ContenedorVentasPorFecha.VentasPorFecha.Clear();
         }
+
+        public static int VentasRangoFechas(int codigoProducto, DateTime fechaInicial, DateTime fechaFinal)
+        {
+            // Variable local donde guardo las ventas
+            int cantidadVentas = 0;
+
+            // Itero para cada una de las fechas en la lista de fechas por venta
+            foreach (DateTime fecha in ContenedorVentasPorFecha.VentasPorFecha.Keys)
+            {
+                // En caso que fechaInicial < fecha < fechaFinal
+                if (DateTime.Compare(fechaInicial, fecha) <= 0 && DateTime.Compare(fecha, fechaFinal) <= 0)
+                {
+                    // Itero para cada una de las ventas totales realizadas en el dia
+                    foreach (VentaTotal ventaTotal in ContenedorVentasPorFecha.VentasPorFecha[fecha])
+                    {
+                        // Itero para cada una de las ventas individuales pertencientes a la venta total
+                        foreach (VentaIndividual ventaIndividual in ventaTotal.GetVentasIndividuales)
+                        {
+                            // En caso que la venta individual haya sido del producto en cuestión
+                            if (ventaIndividual.GetCodigoProducto.Equals(codigoProducto))
+                            {
+                                // Agrego la cantidad vendida al producto
+                                cantidadVentas += ventaIndividual.GetCantidad;
+                            }
+                        }
+                    }
+                }
+            }
+
+            return cantidadVentas;
+        }
     }
 }

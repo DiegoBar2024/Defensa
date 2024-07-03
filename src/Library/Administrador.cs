@@ -178,5 +178,11 @@ namespace ProyectoFinal
                         // EXPERT --> Delego la responsabilidad de obtener los nombres de todos los depositos a la clase ContenedorDepositos
                         return ContenedorDepositos.NombresDepositos();
                 }
+
+                // Metodo que me permita consultar la cantidad vendida de un producto entre dos fechas
+                public int VentasRangoFechas(int codigoProducto, DateTime fechaInicial, DateTime fechaFinal)
+                {
+                        return ContenedorVentasPorFecha.VentasRangoFechas(codigoProducto, fechaInicial, fechaFinal);
+                }
         }
 }
