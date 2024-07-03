@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Xml.Serialization;
 
 namespace ProyectoFinal
@@ -66,6 +67,19 @@ namespace ProyectoFinal
             {
 
                 return ContenedorUsuarios.Usuarios;
+            }
+        }
+
+        // Metodo para dar de baja a un usuario
+        public static void BajaUsuario(string nombre)
+        {
+            foreach (Usuario usuario in ContenedorUsuarios.Usuarios.ToList())
+            {
+                // usuario.GetNombre == nombre
+                if (usuario.GetNombre.Equals(nombre))
+                {
+                    ContenedorUsuarios.Usuarios.Remove(usuario);
+                }
             }
         }
     }

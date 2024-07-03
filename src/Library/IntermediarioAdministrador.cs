@@ -104,5 +104,11 @@ namespace ProyectoFinal
                 {
                         return administrador.NombresDepositos();
                 }
+
+                // Delego el metodo DarBajaUsuario al objeto administrador
+                public static void BajaUsuario(string nombre)
+                {
+                        administrador.BajaUsuario(nombre);
+                }
         }
 }

@@ -1096,6 +1096,17 @@
             nuevo usuario se agrega a este diccionario y cuando se termina de procesar el comando se remueve.
             </summary>
         </member>
+        <member name="M:Ucu.Poo.TelegramBot.AdministradorHandler.#ctor">
+            <summary>
+            Creo el constructor privado para AdministradorHandler por Singleton
+            </summary>
+        </member>
+        <member name="M:Ucu.Poo.TelegramBot.AdministradorHandler.GetInstance">
+            <summary>
+            Creo un método que me permita obtener la misma instancia usando Singleton
+            </summary>
+            <returns>la instancia</returns>
+        </member>
         <!-- Badly formed XML comment ignored for member "M:Ucu.Poo.TelegramBot.AdministradorHandler.CanHandle(Telegram.Bot.Types.Message)" -->
         <member name="M:Ucu.Poo.TelegramBot.AdministradorHandler.InternalHandle(Telegram.Bot.Types.Message,System.String@)">
             <summary>
@@ -1108,6 +1119,41 @@
         <member name="M:Ucu.Poo.TelegramBot.AdministradorHandler.InternalCancel(Telegram.Bot.Types.Message)">
             <summary>
             Retorna este "handler" al estado inicial.
+            </summary>
+        </member>
+        <member name="T:Ucu.Poo.TelegramBot.AdministradorHandler.EstadoAdministrador">
+            <summary>
+            Enum que me guarde los estados del administrador
+            </summary>
+        </member>
+        <member name="T:Ucu.Poo.TelegramBot.AdministradorHandler.EstadoCrearDeposito">
+            <summary>
+            Hago un enum que me guarde los estados de Alta Producto
+            </summary>
+        </member>
+        <member name="T:Ucu.Poo.TelegramBot.AdministradorHandler.EstadoAltaUsuario">
+            <summary>
+            Enum que me guarde los estados del Usuario
+            </summary>
+        </member>
+        <member name="T:Ucu.Poo.TelegramBot.AdministradorHandler.EstadoCrearSeccion">
+            <summary>
+            Enum que me guarde los estados de crear una sección
+            </summary>
+        </member>
+        <member name="T:Ucu.Poo.TelegramBot.AdministradorHandler.EstadoCrearCategorias">
+            <summary>
+            Enum que me guarde los estados de crear categorías
+            </summary>
+        </member>
+        <member name="T:Ucu.Poo.TelegramBot.AdministradorHandler.EstadoRegistrarCompra">
+            <summary>
+            Enum que me guarde los estados de cuando registro una compra
+            </summary>
+        </member>
+        <member name="T:Ucu.Poo.TelegramBot.AdministradorHandler.EstadoVisualizarVentas">
+            <summary>
+            Enum que me guarde los estados para cuando quiero visualizar la venta en un día dado
             </summary>
         </member>
         <member name="T:Ucu.Poo.TelegramBot.AutenticadorHandler">
@@ -1145,6 +1191,11 @@
         <member name="M:Ucu.Poo.TelegramBot.AutenticadorHandler.InternalCancel(Telegram.Bot.Types.Message)">
             <summary>
             Retorna este "handler" al estado inicial.
+            </summary>
+        </member>
+        <member name="T:Ucu.Poo.TelegramBot.AutenticadorHandler.EstadoAutenticador">
+            <summary>
+            Enum que me guarde los estados de cuando me voy a autenticar
             </summary>
         </member>
         <member name="T:Ucu.Poo.TelegramBot.BaseHandler">
@@ -1345,6 +1396,26 @@
         <member name="M:Ucu.Poo.TelegramBot.UsuarioHandler.InternalCancel(Telegram.Bot.Types.Message)">
             <summary>
             Retorna este "handler" al estado inicial.
+            </summary>
+        </member>
+        <member name="T:Ucu.Poo.TelegramBot.UsuarioHandler.EstadoUsuario">
+            <summary>
+            Enum que me guarde los estados de Usuarios
+            </summary>
+        </member>
+        <member name="T:Ucu.Poo.TelegramBot.UsuarioHandler.EstadoDepositoMasCercano">
+            <summary>
+            Hago un enum que me guarde los estados de Deposito Mas Cercano
+            </summary>
+        </member>
+        <member name="T:Ucu.Poo.TelegramBot.UsuarioHandler.EstadoAltaProducto">
+            <summary>
+             Hago un enum que me guarde los estados de Alta Producto
+            </summary>
+        </member>
+        <member name="T:Ucu.Poo.TelegramBot.UsuarioHandler.EstadoRealizarVenta">
+            <summary>
+            Enum que me guarde los estados de realizar ventas
             </summary>
         </member>
     </members>

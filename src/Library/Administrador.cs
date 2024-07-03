@@ -66,11 +66,15 @@ namespace ProyectoFinal
                 /// </summary>
                 /// <param name="nombre">Nombre del usuario</param>
                 /// <param name="permiso">Permiso del usuario (administrador o usuario)</param>
-
                 public void AltaUsuario(string nombre, string permiso, List<string> nombresDepositos)
                 {
                         // CREATOR --> Delego la reponsabilidad de dar de alta un usuario a la clase UserContainer
                         ContenedorUsuarios.AltaUsuario(nombre, permiso, nombresDepositos);
+                }
+
+                public void BajaUsuario(string nombre)
+                {
+                        ContenedorUsuarios.BajaUsuario(nombre);
                 }
 
                 /// <summary>

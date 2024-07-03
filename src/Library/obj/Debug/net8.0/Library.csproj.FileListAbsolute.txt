@@ -29,3 +29,21 @@ C:\Users\enzob\OneDrive - Universidad Católica del Uruguay\UCU\Programacion 2\R
 C:\Users\enzob\OneDrive - Universidad Católica del Uruguay\UCU\Programacion 2\Repositorios\proyecto_final_2024\PII_2024_1_equipo_02\src\Library\bin\Debug\net8.0\Ucu.Poo.Locations.Client.xml
 C:\Users\enzob\OneDrive - Universidad Católica del Uruguay\UCU\Programacion 2\Repositorios\proyecto_final_2024\PII_2024_1_equipo_02\src\Library\obj\Debug\net8.0\Library.csproj.Up2Date
 C:\Users\enzob\OneDrive - Universidad Católica del Uruguay\UCU\Programacion 2\Repositorios\proyecto_final_2024\PII_2024_1_equipo_02\src\Library\obj\Debug\net8.0\ref\Library.dll
+C:\Yo\Noveno Semestre\Programacion II\DefensaProyecto\Defensa\src\Library\obj\Debug\net8.0\Library.csproj.AssemblyReference.cache
+C:\Yo\Noveno Semestre\Programacion II\DefensaProyecto\Defensa\src\Library\obj\Debug\net8.0\Library.GeneratedMSBuildEditorConfig.editorconfig
+C:\Yo\Noveno Semestre\Programacion II\DefensaProyecto\Defensa\src\Library\obj\Debug\net8.0\Library.AssemblyInfoInputs.cache
+C:\Yo\Noveno Semestre\Programacion II\DefensaProyecto\Defensa\src\Library\obj\Debug\net8.0\Library.AssemblyInfo.cs
+C:\Yo\Noveno Semestre\Programacion II\DefensaProyecto\Defensa\src\Library\obj\Debug\net8.0\Library.csproj.CoreCompileInputs.cache
+C:\Yo\Noveno Semestre\Programacion II\DefensaProyecto\Defensa\src\Library\obj\Debug\net8.0\Library.sourcelink.json
+C:\Yo\Noveno Semestre\Programacion II\DefensaProyecto\Defensa\src\Library\obj\Debug\net8.0\Library.dll
+C:\Yo\Noveno Semestre\Programacion II\DefensaProyecto\Defensa\src\Library\obj\Debug\net8.0\refint\Library.dll
+C:\Yo\Noveno Semestre\Programacion II\DefensaProyecto\Defensa\src\Library\obj\Debug\net8.0\Library.pdb
+C:\Yo\Noveno Semestre\Programacion II\DefensaProyecto\Defensa\src\Library\bin\Debug\net8.0\Library.deps.json
+C:\Yo\Noveno Semestre\Programacion II\DefensaProyecto\Defensa\src\Library\bin\Debug\net8.0\Library.dll
+C:\Yo\Noveno Semestre\Programacion II\DefensaProyecto\Defensa\src\Library\bin\Debug\net8.0\Library.pdb
+C:\Yo\Noveno Semestre\Programacion II\DefensaProyecto\Defensa\src\Library\bin\Debug\net8.0\Library.xml
+C:\Yo\Noveno Semestre\Programacion II\DefensaProyecto\Defensa\src\Library\bin\Debug\net8.0\Ucu.Poo.Locations.Client.dll
+C:\Yo\Noveno Semestre\Programacion II\DefensaProyecto\Defensa\src\Library\bin\Debug\net8.0\Ucu.Poo.Locations.Client.pdb
+C:\Yo\Noveno Semestre\Programacion II\DefensaProyecto\Defensa\src\Library\bin\Debug\net8.0\Ucu.Poo.Locations.Client.xml
+C:\Yo\Noveno Semestre\Programacion II\DefensaProyecto\Defensa\src\Library\obj\Debug\net8.0\Library.csproj.Up2Date
+C:\Yo\Noveno Semestre\Programacion II\DefensaProyecto\Defensa\src\Library\obj\Debug\net8.0\ref\Library.dll

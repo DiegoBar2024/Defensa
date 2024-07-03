@@ -17,7 +17,7 @@ namespace Ucu.Poo.TelegramBot
     public class AdministradorHandler : BaseHandler
     {
         // Especifico posibles mensajes
-        public const string ADMINISTRADOR_MENSAJE = "Como administrador podes hacer:\n1) Crear deposito\n2) Dar de alta usuario\n3) Definir secciones\n4) Dar de alta proveedor\n5) Crear una nueva categoría\n6) Registrar una compra\n7) Visualizar las ventas en un día\n8) Salir";
+        public const string ADMINISTRADOR_MENSAJE = "Como administrador podes hacer:\n1) Crear deposito\n2) Dar de alta usuario\n3) Definir secciones\n4) Dar de alta proveedor\n5) Crear una nueva categoría\n6) Registrar una compra\n7) Visualizar las ventas en un día\n8) Salir\n9) Dar de baja a un usuario";
 
         // Creo la instancia AdministradorHandler privada estática para cumplir con Singleton
         private static AdministradorHandler administradorHandler;
@@ -36,6 +36,8 @@ namespace Ucu.Poo.TelegramBot
         Dictionary<long, EstadoRegistrarCompra> registrarCompra = new Dictionary<long, EstadoRegistrarCompra>();
 
         Dictionary<long, EstadoVisualizarVentas> visualizarVentas = new Dictionary<long, EstadoVisualizarVentas>();
+
+        Dictionary<long, EstadoBajaUsuario> bajaUsuario = new Dictionary<long, EstadoBajaUsuario>();
 
         StringBuilder stringBuilder = new StringBuilder();
 
@@ -234,6 +236,19 @@ namespace Ucu.Poo.TelegramBot
 
                     // Envío respuesta al usuario
                     response = "Saliendo. Ingrese <<hola>> para volver a iniciar sesión.";
+                }
+
+                // Caso de eliminar usuario
+                else if (message.Text.Equals("9"))
+                {
+                    // Estado externo
+                    this.stateForUser[message.From.Id] = EstadoAdministrador.BajaUsuario;
+
+                    // Estado interno
+                    bajaUsuario[message.From.Id] = EstadoBajaUsuario.Nombre;
+
+                    // Respuesta
+                    response = "Dame el nombre del usuario que quieras eliminar";
                 }
 
                 // En otro caso, que le avise al administrador que no sabe hacer eso
@@ -649,6 +664,27 @@ namespace Ucu.Poo.TelegramBot
                 }
             }
 
+            else if (state == EstadoAdministrador.BajaUsuario)
+            {
+                try
+                {
+                    IntermediarioAdministrador.BajaUsuario(message.Text);
+
+                    response = $"Usuario dado de baja correctamente. {ADMINISTRADOR_MENSAJE}";
+                }
+
+                catch (Exception e)
+                {
+                    response = $"{e.Message}{ADMINISTRADOR_MENSAJE}";
+                }
+
+                this.stateForUser[message.From.Id] = EstadoAdministrador.AdministradorMensaje;
+
+                AutenticadorHandler.EliminarPerfil("usuario", message.Text);
+
+                AutenticadorHandler.Accesos.Remove(message.Text);
+            }
+
             // En caso que no se cumplan ninguno de los casos de arriba, que el handler no haga nada
             else
             {
@@ -681,6 +717,7 @@ namespace Ucu.Poo.TelegramBot
             CrearCategorias,
             RegistrarCompra,
             VisualizarVentas,
+            BajaUsuario,
         }
 
         /// <summary>
@@ -740,6 +777,11 @@ namespace Ucu.Poo.TelegramBot
             Dia,
             Mes,
             Año
+        }
+
+        public enum EstadoBajaUsuario
+        {
+            Nombre
         }
     }
 }

@@ -54,6 +54,11 @@ namespace Ucu.Poo.TelegramBot
             }
         }
 
+        public static void EliminarPerfil(string perfil, string contraseña)
+        {
+            Perfiles[perfil].Remove(contraseña);
+        }
+
         /// <summary>
         /// El estado del comando para un usuario que envía un mensaje. Cuando se comienza a procesar el comando para un
         /// nuevo usuario se agrega a este diccionario y cuando se termina de procesar el comando se remueve.

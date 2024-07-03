@@ -4,6 +4,21 @@
         <name>LibraryTests</name>
     </assembly>
     <members>
+        <member name="T:Tests.TestAdministradorHandler">
+            <summary>
+            Clase que contiene los casos de prueba para AdministradorHandler
+            </summary>
+        </member>
+        <member name="M:Tests.TestAdministradorHandler.Teardown">
+            <summary>
+            Le digo que antes de empezar elimine todos los depósitos
+            </summary>
+        </member>
+        <member name="T:Tests.TestProveedorHandler">
+            <summary>
+            Casos de prueba para ProveedorHandler
+            </summary>
+        </member>
         <member name="T:Tests.TestsAdministrador">
             <summary>
             Clase que contiene los casos de prueba (test) para las funcionalidades de Administrador.
@@ -154,6 +169,11 @@
         <member name="M:Tests.TestsUsuario.RealizarVentaDosProductos">
             <summary>
             Test que prueba la función de realizar la venta de dos productos
+            </summary>
+        </member>
+        <member name="T:Tests.TestUsuarioHandler">
+            <summary>
+            Casos de prueba para UsuarioHandler
             </summary>
         </member>
     </members>

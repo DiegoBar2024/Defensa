@@ -1770,7 +1770,7 @@
       },
       "Ucu.Poo.Locations.Client/1.0.0": {
         "type": "project",
-        "framework": ".NETCoreApp,Version=v7.0",
+        "framework": ".NETCoreApp,Version=v6.0",
         "dependencies": {
           "Microsoft.CodeAnalysis.FxCopAnalyzers": "2.9.3",
           "Nito.AsyncEx": "5.1.2",
@@ -4105,40 +4105,32 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\enzob\\.nuget\\packages\\": {},
-    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
+    "C:\\Users\\diego\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\enzob\\OneDrive - Universidad Católica del Uruguay\\UCU\\Programacion 2\\Repositorios\\proyecto_final_2024\\PII_2024_1_equipo_02\\test\\LibraryTests\\LibraryTests.csproj",
+      "projectUniqueName": "C:\\Yo\\Noveno Semestre\\Programacion II\\DefensaProyecto\\Defensa\\test\\LibraryTests\\LibraryTests.csproj",
       "projectName": "LibraryTests",
-      "projectPath": "C:\\Users\\enzob\\OneDrive - Universidad Católica del Uruguay\\UCU\\Programacion 2\\Repositorios\\proyecto_final_2024\\PII_2024_1_equipo_02\\test\\LibraryTests\\LibraryTests.csproj",
-      "packagesPath": "C:\\Users\\enzob\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\enzob\\OneDrive - Universidad Católica del Uruguay\\UCU\\Programacion 2\\Repositorios\\proyecto_final_2024\\PII_2024_1_equipo_02\\test\\LibraryTests\\obj\\",
+      "projectPath": "C:\\Yo\\Noveno Semestre\\Programacion II\\DefensaProyecto\\Defensa\\test\\LibraryTests\\LibraryTests.csproj",
+      "packagesPath": "C:\\Users\\diego\\.nuget\\packages\\",
+      "outputPath": "C:\\Yo\\Noveno Semestre\\Programacion II\\DefensaProyecto\\Defensa\\test\\LibraryTests\\obj\\",
       "projectStyle": "PackageReference",
-      "fallbackFolders": [
-        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-      ],
       "configFilePaths": [
-        "C:\\Users\\enzob\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        "C:\\Users\\diego\\AppData\\Roaming\\NuGet\\NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net8.0"
       ],
       "sources": {
-        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-        "C:\\Program Files\\dotnet\\library-packs": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
         "net8.0": {
           "targetAlias": "net8.0",
           "projectReferences": {
-            "C:\\Users\\enzob\\OneDrive - Universidad Católica del Uruguay\\UCU\\Programacion 2\\Repositorios\\proyecto_final_2024\\PII_2024_1_equipo_02\\src\\Program\\Program.csproj": {
-              "projectPath": "C:\\Users\\enzob\\OneDrive - Universidad Católica del Uruguay\\UCU\\Programacion 2\\Repositorios\\proyecto_final_2024\\PII_2024_1_equipo_02\\src\\Program\\Program.csproj"
+            "C:\\Yo\\Noveno Semestre\\Programacion II\\DefensaProyecto\\Defensa\\src\\Program\\Program.csproj": {
+              "projectPath": "C:\\Yo\\Noveno Semestre\\Programacion II\\DefensaProyecto\\Defensa\\src\\Program\\Program.csproj"
             }
           }
         }
@@ -4191,7 +4183,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.300/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.203/PortableRuntimeIdentifierGraph.json"
       }
     }
   }
