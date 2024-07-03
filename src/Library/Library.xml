@@ -1,0 +1,890 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Library</name>
+    </assembly>
+    <members>
+        <member name="T:ProyectoFinal.Administrador">
+            <summary>
+            Clase que representa un Administrador y hereda de la clase Usuario.
+            También en esta clase se utiliza el patrón Creator y Expert.
+            Como principios se utilizó SRP.
+            En el readme se puede encontrar la explicación más detallada del por qué se
+            usaron estos patrones y principios
+            </summary>
+        </member>
+        <member name="M:ProyectoFinal.Administrador.#ctor(System.String)">
+            <summary>
+            Constructor de la clase
+            </summary>
+            <param name="nombre">Nombre del administrador</param>
+            <returns></returns>
+        </member>
+        <member name="M:ProyectoFinal.Administrador.CrearDeposito(System.String,System.String,System.Int32,System.Double)">
+            <summary>
+            Método para la creación de un depósito
+            </summary>
+            <param name="nombre">Nombre del depósito</param>
+            <param name="ubicacion">Ubicación del depósito</param>
+            <param name="capacidad">Capacidad del depósito</param>
+            <param name="distancia">Distancia depósitos</param>
+        </member>
+        <member name="M:ProyectoFinal.Administrador.CrearSeccion(System.String,System.Int32,System.String)">
+            <summary>
+            Método para crear la sección dentro del depósito
+            </summary>
+            <param name="nombre">Nombre de la sección</param>
+            <param name="capacidad">Capacidad de la sección</param>
+            <param name="nombreDeposito">Nombre del depósito en que se creará la sección</param>
+        </member>
+        <member name="M:ProyectoFinal.Administrador.AltaUsuario(System.String,System.String)">
+            <summary>
+            Método para dar de alta a un Usuario
+            </summary>
+            <param name="nombre">Nombre del usuario</param>
+            <param name="permiso">Permiso del usuario (administrador o usuario)</param>
+        </member>
+        <member name="M:ProyectoFinal.Administrador.AltaProveedor(System.String)">
+            <summary>
+            Método para dar de alta a un proveedor
+            </summary>
+            <param name="nombre">Nombre del proveedor</param>
+        </member>
+        <member name="M:ProyectoFinal.Administrador.CrearCategoria(System.String,System.Collections.Generic.List{System.Int32})">
+            <summary>
+            Método para crear una categoría 
+            </summary>
+            <param name="categoria">Nombre de la categoría</param>
+            <param name="codigoProductos">Lista de códigos de productos de una categoría</param>
+        </member>
+        <member name="M:ProyectoFinal.Administrador.AumentarStock(System.String,System.Int32,System.Int32)">
+            <summary>
+            Método para aumentar stock de un producto en un determinado depósito 
+            </summary>
+            <param name="nombreDeposito">Nombre del depósito en el que quiero aumentar el stock del producto</param>
+            <param name="stockComprado">Cantidad de stock comprado</param>
+            <param name="codigoProducto">Código del producto</param>
+        </member>
+        <member name="M:ProyectoFinal.Administrador.VentasEnDia(System.DateTime)">
+            <summary>
+            Método para adquirir las ventas realizadas en un día dado
+            </summary>
+            <param name="fecha">Fecha de las ventas realizadas</param>
+            <returns></returns>
+        </member>
+        <member name="T:ProyectoFinal.Autenticacion">
+            <summary>
+            Clase responsable de la autenticación de diferentes tipos de funcionarios: administrador, usuario y proveedor.
+            Genera códigos aleatorios para cada tipo de funcionario y los almacena en un diccionario.
+            </summary>
+        </member>
+        <member name="F:ProyectoFinal.Autenticacion.codigos">
+            <summary>
+            Diccionario que almacena los códigos de autenticación con el tipo de funcionario como clave.
+            </summary>
+            <typeparam name="string">Tipo de datos de la clave - string</typeparam>
+            <typeparam name="string">">Tipo de datos de los calores - string</typeparam>
+            <returns>Diccionario de códigos</returns>
+        </member>
+        <member name="M:ProyectoFinal.Autenticacion.Autenticar">
+            <summary>
+            Genera códigos de autenticación aleatorios para los distintos tipos de funcionarios y los guarda en el diccionario.
+            </summary>
+        </member>
+        <member name="M:ProyectoFinal.Autenticacion.GenerarPIN">
+            <summary>
+            Método para generar un código aleatorio de 4 dígitos
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:ProyectoFinal.BuscadorDepositos">
+            <summary>
+            Creo una clase BuscadorDepositos que se encargue de buscar depositos en base a un nombre
+            Se utiliza el patrón Polimorfismo (leer archivo readme para más detalles).
+            </summary>
+        </member>
+        <member name="F:ProyectoFinal.BuscadorDepositos.NombreDeposito">
+            <summary>
+            Atributos de la clase
+            </summary>
+        </member>
+        <member name="M:ProyectoFinal.BuscadorDepositos.#ctor(System.String)">
+            <summary>
+            Constructor de la clase
+            </summary>
+            <param name="nombreDeposito">Nombre del depósito a buscar</param>
+        </member>
+        <member name="M:ProyectoFinal.BuscadorDepositos.Buscar">
+            <summary>
+            Creo un método que me traduzca un nombre de deposito en un deposito
+            </summary>
+            <returns> Depósito correspondiente al nombre o en caso que no se encuentre retorna null</returns>
+        </member>
+        <member name="T:ProyectoFinal.BuscadorSecciones">
+            <summary>
+            Creo una clase BuscadorSecciones que se encargue de buscar secciones en base a datos de entrada
+            Se utiliza el patrón Polimorfismo (leer archivo readme para más detalles).
+            </summary>
+        </member>
+        <member name="F:ProyectoFinal.BuscadorSecciones.NombreDeposito">
+            <summary>
+            Atributos nombreDeposito y nombreSeccion
+            </summary>
+        </member>
+        <member name="M:ProyectoFinal.BuscadorSecciones.#ctor(System.String,System.String)">
+            <summary>
+            Constructor de la clase
+            </summary>
+            <param name="nombreDeposito">Nombre del depósito donde se encuentra la sección</param>
+            <param name="nombreSeccion">Nombre de la sección que se quiere buscar</param>
+        </member>
+        <member name="M:ProyectoFinal.BuscadorSecciones.Buscar">
+            <summary>
+            Creo un método que busque una sección por nombre dentro de un depósito
+            </summary>
+            <returns>La sección que estoy buscando o en caso contrario retorna null </returns>
+        </member>
+        <member name="T:ProyectoFinal.ContenedorDepositos">
+            <summary>
+            Clase para la creación de objetos del tipo IDeposito.
+            Se usa el patron Creator (leer archivo readme para más detalles).
+            </summary>
+        </member>
+        <member name="M:ProyectoFinal.ContenedorDepositos.AgregarDeposito(System.String,System.String,System.Int32,System.Double)">
+            <summary>
+            Uso el patrón Creator para asignar la responsabilidad de la creación de un depósito a ésta clase
+            que contiene múltiples objetos Deposito
+            </summary>
+            <param name="nombre">Nombre del depósito</param>
+            <param name="ubicacion">Ubicación del depósito</param>
+            <param name="capacidad">Capacidad del depósito</param>
+            <param name="distancia">Distancia depósitos</param>
+            <returns></returns>
+        </member>
+        <member name="M:ProyectoFinal.ContenedorDepositos.EliminarDepositos">
+            <summary>
+            Creo un método que me elimine todos los depósitos
+            </summary>
+        </member>
+        <member name="P:ProyectoFinal.ContenedorDepositos.GetDepositos">
+            <summary>
+            Creo un método getter que me permita acceder a los depósitos externamente
+            </summary>
+            <value>Depósitos</value>
+        </member>
+        <member name="T:ProyectoFinal.ContenedorProveedores">
+            <summary>
+            Clase que se comporta como un contenedor para almacenar una lista de proveedores
+            Se utiliza el patrón Creator (leer archivo readme para más detalles)
+            </summary>
+        </member>
+        <member name="F:ProyectoFinal.ContenedorProveedores.Proveedores">
+            <summary>
+            Lista estática que contiene los objetos del tipo Proveedor
+            </summary>
+            <typeparam name="Proveedor"></typeparam>
+            <returns></returns>
+        </member>
+        <member name="M:ProyectoFinal.ContenedorProveedores.AltaProveedor(System.String)">
+            <summary>
+            Uso el patrón Creator para crear un proveedor en base a los datos de entrada
+            </summary>
+            <param name="nombre">Nombre del proveedor</param>
+            <returns>El proveedor</returns>
+        </member>
+        <member name="P:ProyectoFinal.ContenedorProveedores.GetProveedores">
+            <summary>
+            Método getter para la lista de proveedores
+            </summary>
+            <value>Proveedores</value>
+        </member>
+        <member name="T:ProyectoFinal.ContenedorUsuarios">
+            <summary>
+            Clase para la creación de objetos del tipo Usuario.
+            Se utiliza el patrón Creator (leer archivo readme para más detalles)
+            </summary>
+        </member>
+        <member name="M:ProyectoFinal.ContenedorUsuarios.AltaUsuario(System.String,System.String)">
+            <summary>
+            Usando el patrón Creator agrego un usuario a la lista usando los parámetros dados de entrada
+            </summary>
+            <param name="nombre">Nombre del usuario</param>
+            <param name="permiso">Si se tienen permisos de administrador</param>
+            <returns></returns>
+        </member>
+        <member name="P:ProyectoFinal.ContenedorUsuarios.GetUsuarios">
+            <summary>
+            Propiedad (getter) que retorna la lista de usuarios 
+            </summary>
+            <value>Lista de usuarios</value>
+        </member>
+        <member name="T:ProyectoFinal.ContenedorVentasPorFecha">
+            <summary>
+            Creo una nueva clase que contenga una correspondencia entre una fecha y las ventas realizadas
+            Por el patrón Expert, se asigna la responsabilidad a ésta clase de realizar la búsqueda
+            de todas las ventas en un determinado día (leer archivo readme para más detalles)
+            </summary>
+        </member>
+        <member name="M:ProyectoFinal.ContenedorVentasPorFecha.VentasEnDia(System.DateTime)">
+            <summary>
+            Usando el patrón Expert asigno la responsabilidad a ésta clase de hacer las búsquedas por fecha
+            </summary>
+            <param name="fecha">Fecha para las ventas que quiero</param>
+            <returns>Lista de las ventas para la fecha dada</returns>
+        </member>
+        <member name="M:ProyectoFinal.ContenedorVentasPorFecha.AgregarVentaPorFecha(ProyectoFinal.VentaTotal,System.DateTime)">
+            <summary>
+            Agrego un método que me permita agregar una venta total según la fecha al contenedor de ventas por fecha
+            </summary>
+            <param name="ventaTotal">Venta total</param>
+            <param name="fechaVenta">Fecha de la venta</param>
+        </member>
+        <member name="T:ProyectoFinal.CreadorCategorias">
+            <summary>
+            Creo una clase cuya responsabilidad sea la de crear categorías de productos
+            </summary>
+        </member>
+        <member name="M:ProyectoFinal.CreadorCategorias.CrearCategoria(System.String,System.Collections.Generic.List{System.Int32})">
+            <summary>
+            Método para crear categorías
+            </summary>
+            <param name="categoria">Categoría de los productos</param>
+            <param name="codigosProductos">Lista de códigos de productos</param>
+        </member>
+        <member name="T:ProyectoFinal.Deposito">
+            <summary>
+            Se usa el patrón Creator, esta clase es la ideal para la creación de objetos ISeccion.
+            /// Se crea interfaz IDeposito con el objetivo de utilizar el principio OCP (para mas detalles leer archivo readme)
+            </summary>
+        </member>
+        <member name="F:ProyectoFinal.Deposito.Nombre">
+            <summary>
+            Atributos de la clase
+            </summary>
+        </member>
+        <member name="M:ProyectoFinal.Deposito.#ctor(System.String,System.String,System.Int32,System.Double)">
+            <summary>
+            Constructor de la clase
+            </summary>
+            <param name="nombre">Nombre del depósito</param>
+            <param name="ubicacion">Ubicación del depósito</param>
+            <param name="capacidad">Capacidad del depósito</param>
+            <param name="distancia">Distancia depósitos</param>
+        </member>
+        <member name="M:ProyectoFinal.Deposito.CrearSeccion(System.String,System.Int32)">
+            <summary>
+            Usando el patrón Creator le asigno al depósito la responsabilidad de crear una seccion
+            </summary>
+            <param name="nombre">Nombre de la sección</param>
+            <param name="capacidad">Capacidad de la sección</param>
+            <returns>La sección</returns>
+        </member>
+        <member name="P:ProyectoFinal.Deposito.GetSecciones">
+            <summary>
+            Construyo un getter para las secciones dentro de un deposito
+            </summary>
+            <value>Las secciones</value>
+        </member>
+        <member name="P:ProyectoFinal.Deposito.GetNombresSecciones">
+            <summary>
+            Construyo método getter que me de los nombres de secciones dentro de un depósito
+            </summary>
+            <value>Lista de nombre de secciones dentro de un depósito</value>
+        </member>
+        <member name="P:ProyectoFinal.Deposito.GetNombre">
+            <summary>
+            Creo un método getter para el nombre del deposito
+            </summary>
+            <value>Nombre del depósito</value>
+        </member>
+        <member name="T:ProyectoFinal.CapacidadInsuficienteExcepcion">
+            <summary>
+            Excepción que se "activa" cuando la capacidad no es suficiente
+            </summary>
+        </member>
+        <member name="M:ProyectoFinal.CapacidadInsuficienteExcepcion.#ctor(System.String)">
+            <summary>
+            Constructor de la clase
+            </summary>
+            <param name="message"></param>
+            <returns></returns>
+        </member>
+        <member name="T:ProyectoFinal.CategoriaExistenteExcepcion">
+            <summary>
+            Excepción que se "activa" cuando se intenta crear una categoría que ya existe.
+            </summary>
+        </member>
+        <member name="M:ProyectoFinal.CategoriaExistenteExcepcion.#ctor(System.String)">
+            <summary>
+            Constructor de la clase
+            </summary>
+            <param name="message"></param>
+            <returns></returns>
+        </member>
+        <member name="T:ProyectoFinal.CategoriaInvalidaExcepcion">
+            <summary>
+            Excepción que se "activa" cuando se proporciona una categoría que no es válida
+            </summary>
+        </member>
+        <member name="M:ProyectoFinal.CategoriaInvalidaExcepcion.#ctor(System.String)">
+            <summary>
+            Constructor de la clase
+            </summary>
+            <param name="message"></param>
+            <returns></returns>
+        </member>
+        <member name="T:ProyectoFinal.CodigoProductoExistenteExcepcion">
+            <summary>
+             Excepción que se "activa" cuando se intenta agregar un producto con un código que ya existe
+            </summary>
+        </member>
+        <member name="M:ProyectoFinal.CodigoProductoExistenteExcepcion.#ctor(System.String)">
+            <summary>
+            Constructor de la clase
+            </summary>
+            <param name="message"></param>
+            <returns></returns>
+        </member>
+        <member name="T:ProyectoFinal.DepositoNoEncontradoExcepcion">
+            <summary>
+            Excepción que se "activa" cuando un depósito no es encontrado
+            </summary>
+        </member>
+        <member name="M:ProyectoFinal.DepositoNoEncontradoExcepcion.#ctor(System.String)">
+            <summary>
+            Constructor de la clase
+            </summary>
+            <param name="message"></param>
+            <returns></returns>
+        </member>
+        <member name="T:ProyectoFinal.FechaInvalidaExcepcion">
+            <summary>
+            Excepción que se "activa" cuando la fecha no es válida
+            </summary>
+        </member>
+        <member name="M:ProyectoFinal.FechaInvalidaExcepcion.#ctor(System.String)">
+            <summary>
+            Constructor de la clase
+            </summary>
+            <param name="message"></param>
+            <returns></returns>
+        </member>
+        <member name="T:ProyectoFinal.ListaCodigosVaciaExcepcion">
+            <summary>
+            Excepción que se "activa" cuando la lista de códigos estpa vacía
+            </summary>
+        </member>
+        <member name="M:ProyectoFinal.ListaCodigosVaciaExcepcion.#ctor(System.String)">
+            <summary>
+            Constructor de la clase 
+            </summary>
+            <param name="message"></param>
+            <returns></returns>
+        </member>
+        <member name="T:ProyectoFinal.PINInvalidoExcepcion">
+            <summary>
+            Excepción que se "activa" cuando el pin no es válido
+            </summary>
+        </member>
+        <member name="M:ProyectoFinal.PINInvalidoExcepcion.#ctor(System.String)">
+            <summary>
+            Constructor de la clase
+            </summary>
+            <param name="message"></param>
+            <returns></returns>
+        </member>
+        <member name="T:ProyectoFinal.ProveedorNoEncontrado">
+            <summary>
+            Excepción que se "activa" cuando el proveedor no es encontrado
+            </summary>
+        </member>
+        <member name="M:ProyectoFinal.ProveedorNoEncontrado.#ctor(System.String)">
+            <summary>
+            Constructor de la clase
+            </summary>
+            <param name="message"></param>
+            <returns></returns>
+        </member>
+        <member name="T:ProyectoFinal.SeccionExistenteExcepcion">
+            <summary>
+            Excepción que se "activa" cuando la sección a crear ya existe
+            </summary>
+        </member>
+        <member name="M:ProyectoFinal.SeccionExistenteExcepcion.#ctor(System.String)">
+            <summary>
+            Constructor de la clase
+            </summary>
+            <param name="message"></param>
+            <returns></returns>
+        </member>
+        <member name="T:ProyectoFinal.StockInsuficienteExcepcion">
+            <summary>
+            Excepción para cuando el stock no es suficiente para realizar alguna operación con el mismo
+            </summary>
+        </member>
+        <member name="M:ProyectoFinal.StockInsuficienteExcepcion.#ctor(System.String)">
+            <summary>
+            Constructor de la clase
+            </summary>
+            <param name="message"></param>
+            <returns></returns>
+        </member>
+        <member name="T:ProyectoFinal.TipoFuncionarioNoEncontradoExcepcion">
+            <summary>
+            Excepción que se "activa" cuando el tipo de funcionario no es el correcto
+            </summary>
+        </member>
+        <member name="M:ProyectoFinal.TipoFuncionarioNoEncontradoExcepcion.#ctor(System.String)">
+            <summary>
+            Constructor de la clase
+            </summary>
+            <param name="message"></param>
+            <returns></returns>
+        </member>
+        <member name="T:ProyectoFinal.VentaIndividualNoEncontradaExcepcion">
+            <summary>
+            Excepción que se "activa" cuando no es encontrada una venta individual
+            </summary>
+        </member>
+        <member name="M:ProyectoFinal.VentaIndividualNoEncontradaExcepcion.#ctor(System.String)">
+            <summary>
+            Constructor de la clase
+            </summary>
+            <param name="message"></param>
+            <returns></returns>
+        </member>
+        <member name="T:ProyectoFinal.IBuscador`1">
+            <summary>
+            Se define una interfaz genérica 
+            Para más detalle leer el archivo readme
+            </summary>
+            <typeparam name="T">Tipo de objeto que será buscado</typeparam>
+        </member>
+        <member name="M:ProyectoFinal.IBuscador`1.Buscar">
+            <summary>
+            Método para buscar un objeto del tipo T
+            </summary>
+            <returns>Objeto que se encuentra de tipo T</returns>
+        </member>
+        <member name="T:ProyectoFinal.IDeposito">
+            <summary>
+            Interfaz IDeposito. La clase Depósito implementa esta interfaz con el fin de aplicar
+            el principio OCP (leer archivo readme para más detalles).
+            </summary>
+        </member>
+        <member name="P:ProyectoFinal.IDeposito.GetNombre">
+            <summary>
+            Se obtiene nombre del depósito
+            </summary>
+            <value>Nombre del depósito</value>
+        </member>
+        <member name="P:ProyectoFinal.IDeposito.GetSecciones">
+            <summary>
+            Se obtienen las secciones dentro del depósito 
+            </summary>
+            <value>Secciones dentro del depósito</value>
+        </member>
+        <member name="M:ProyectoFinal.IDeposito.CrearSeccion(System.String,System.Int32)">
+            <summary>
+            Creación de una sección dentro del depósito 
+            </summary>
+            <param name="nombre">Nombre de la sección</param>
+            <param name="capacidad">Capacidad de la sección</param>
+            <returns>La sección</returns>
+        </member>
+        <member name="T:ProyectoFinal.InicioSesion">
+            <summary>
+            Se define clase para el inicio de sesión de un usuario 
+            </summary>
+        </member>
+        <member name="F:ProyectoFinal.InicioSesion.PIN_Usuario">
+            <summary>
+            Atributo estático PIN_Usuario en donde se almacenará el PIN del usuario generado
+            </summary>
+        </member>
+        <member name="M:ProyectoFinal.InicioSesion.Verificar">
+            <summary>
+            Método para la verificación del PIN de acceso 
+            </summary>
+            <returns>True or false</returns>
+        </member>
+        <member name="M:ProyectoFinal.InicioSesion.GeneracionPIN">
+            <summary>
+            Método que me genera el PIN de acceso del usuario en base al valor generado
+            </summary>
+        </member>
+        <member name="T:ProyectoFinal.IProducto">
+            <summary>
+            Interfaz IProducto. La clase Producto implementa esta interfaz con el fin de usar el 
+            principio OCP (para más detalles leer el archivo readme).
+            </summary>
+        </member>
+        <member name="P:ProyectoFinal.IProducto.GetCodigo">
+            <summary>
+            Obtiene el código del producto
+            </summary>
+            <value>El código del producto</value>
+        </member>
+        <member name="P:ProyectoFinal.IProducto.GetCategorias">
+            <summary>
+            Se obtienen las categorías de los productos
+            </summary>
+            <value>Categoría producto</value>
+        </member>
+        <member name="M:ProyectoFinal.IProducto.AgregarCategoria(System.String)">
+            <summary>
+            Se agrega la categoría al producto
+            </summary>
+            <param name="categoria">Categoría</param>
+        </member>
+        <member name="M:ProyectoFinal.IProducto.ExisteCategoria(System.String)">
+            <summary>
+            Se verifica la existencia de la categoría
+            </summary>
+            <param name="categoria">Categoría a ser verificada</param>
+            <returns>true or false</returns>
+        </member>
+        <member name="T:ProyectoFinal.ISeccion">
+            <summary>
+            Interfaz ISeccion. La clase Seccion implementa esta interfaz, con el fin de utilizar 
+            el principio DIP (para más detalles leer el readme)
+            </summary>
+        </member>
+        <member name="P:ProyectoFinal.ISeccion.GetNombre">
+            <summary>
+            Se obtiene el nombre de la sección
+            </summary>
+            <value>El nombre de la sección</value>
+        </member>
+        <member name="P:ProyectoFinal.ISeccion.GetCapacidad">
+            <summary>
+            Se obtiene la capacidad de una sección 
+            </summary>
+            <value>La capacidad de una sección</value>
+        </member>
+        <member name="M:ProyectoFinal.ISeccion.AltaProducto(System.String,System.Double,System.Int32,System.String,System.Collections.Generic.List{System.String},System.Int32)">
+            <summary>
+            Método para dar de alta un producto 
+            </summary>
+            <param name="nombre">Nombre del producto</param>
+            <param name="precio">Precio del producto</param>
+            <param name="codigo">Código del producto</param>
+            <param name="marca">Marca del producto</param>
+            <param name="categorias">Lista de categorías de un producto</param>
+            <param name="stock">Stock de un producto</param>
+        </member>
+        <member name="M:ProyectoFinal.ISeccion.ModificarStock(System.Int32,System.Int32)">
+            <summary>
+            Método para modificar el stock de un producto de la sección
+            </summary>
+            <param name="codigoProducto">Código del producto</param>
+            <param name="stock">Nueva cantidad de stock</param>
+        </member>
+        <member name="P:ProyectoFinal.ISeccion.Productos">
+            <summary>
+            Se obtiene la lista de productos de una sección
+            </summary>
+            <value>Lista de productos de una sección</value>
+        </member>
+        <member name="M:ProyectoFinal.ISeccion.CantidadStock(System.Int32)">
+            <summary>
+            Se obtiene la cantidad de stock de un producto de una sección 
+            </summary>
+            <param name="codigoProducto">Código del producto</param>
+            <returns>Cantidad de stock de un producto</returns>
+        </member>
+        <member name="P:ProyectoFinal.ISeccion.CantidadProductos">
+            <summary>
+            Cantidad de productos en total
+            </summary>
+            <value>Cantidad total de productos</value>
+        </member>
+        <member name="T:ProyectoFinal.Producto">
+            <summary>
+            Esta clase implementa la interfaz IProducto con el fin de aplicar el principio DIP.
+            Para más detalles sobre la implementación de esta clase leer el archivo readme
+            </summary>
+        </member>
+        <member name="F:ProyectoFinal.Producto.Nombre">
+            <summary>
+            Atributos de la clase
+            </summary>
+        </member>
+        <member name="M:ProyectoFinal.Producto.#ctor(System.String,System.Double,System.Int32,System.String,System.Collections.Generic.List{System.String})">
+            <summary>
+            Constructor de la clase
+            </summary>
+            <param name="nombre">Nombre del producto</param>
+            <param name="precio">Precio del producto</param>
+            <param name="codigo">Código del producto</param>
+            <param name="marca">Marca del producto</param>
+            <param name="categorias">Categoría del producto</param>
+        </member>
+        <member name="M:ProyectoFinal.Producto.AgregarCategoria(System.String)">
+            <summary>
+            Método que agrega una categoría
+            </summary>
+            <param name="categoria">Nombre de la categoría que se agrega</param>
+        </member>
+        <member name="M:ProyectoFinal.Producto.ExisteCategoria(System.String)">
+            <summary>
+            Método que verifica si existe la categoría
+            </summary>
+            <param name="categoria">Categoría a verificar</param>
+            <returns>true or false</returns>
+        </member>
+        <member name="P:ProyectoFinal.Producto.GetCodigo">
+            <summary>
+            Método getter para el código del producto
+            </summary>
+            <value>El código del producto</value>
+        </member>
+        <member name="P:ProyectoFinal.Producto.GetCategorias">
+            <summary>
+            Método getter para obtener las categorías de un producto
+            </summary>
+            <value>La categoría del producto</value>
+        </member>
+        <member name="T:ProyectoFinal.Proveedor">
+            <summary>
+            Aquí se aplica el principio de SRP,ya que la única responsabilidad es la de visualizar
+            el stock de un determinado producto para todos los depósitos
+            </summary>
+        </member>
+        <member name="F:ProyectoFinal.Proveedor.Nombre">
+            <summary>
+            Atributos de la clase
+            </summary>
+        </member>
+        <member name="M:ProyectoFinal.Proveedor.#ctor(System.String)">
+            <summary>
+            Constructor de la clase
+            </summary>
+            <param name="nombre">Nombre del proveedor</param>
+        </member>
+        <member name="M:ProyectoFinal.Proveedor.VisualizarStock(System.Int32)">
+            <summary>
+            Método para visualizar el stock en todos los depósitos
+            </summary>
+            <param name="codigo">Código del producto</param>
+            <returns>Diccionario que tiene el stock total de un determinado producto</returns>
+        </member>
+        <member name="P:ProyectoFinal.Proveedor.GetNombre">
+            <summary>
+            Método getter para el nombre del proveedor
+            </summary>
+            <value>Nombre del proveedor</value>
+        </member>
+        <member name="T:ProyectoFinal.Seccion">
+            <summary>
+            Clase que implementa la interfaz ISeccion. Se utiliza el principio DIP.
+            También se utiliza el patrón Creator (para más detalles leer el archivo readme)
+            </summary>
+        </member>
+        <member name="F:ProyectoFinal.Seccion.Nombre">
+            <summary>
+            Atributos de la clase
+            </summary>
+        </member>
+        <member name="M:ProyectoFinal.Seccion.#ctor(System.String,System.Int32)">
+            <summary>
+            Constructor de la clase
+            </summary>
+            <param name="nombre">Nombre de la sección</param>
+            <param name="capacidad">Capacidad de la sección</param>
+        </member>
+        <member name="M:ProyectoFinal.Seccion.AltaProducto(System.String,System.Double,System.Int32,System.String,System.Collections.Generic.List{System.String},System.Int32)">
+            <summary>
+            Usando el patrón Creator hago que la clase seccion me de de alta un producto
+            </summary>
+            <param name="nombre">Nombre del producto</param>
+            <param name="precio">Precio del producto</param>
+            <param name="codigo">Código del producto</param>
+            <param name="marca">Marca del producto</param>
+            <param name="categorias">Categoría del producto</param>
+            <param name="stock">Stock del producto</param>
+        </member>
+        <member name="P:ProyectoFinal.Seccion.Productos">
+            <summary>
+            Propiedad que me diga si la sección contiene un determinado producto o no
+            </summary>
+            <value>Lista de productos</value>
+        </member>
+        <member name="M:ProyectoFinal.Seccion.CantidadStock(System.Int32)">
+            <summary>
+             Método que me retorne la cantidad de stock asociado a un producto
+            </summary>
+            <param name="codigoProducto">Código del producto</param>
+            <returns>Cantidad de stock o 0</returns>
+        </member>
+        <member name="M:ProyectoFinal.Seccion.ModificarStock(System.Int32,System.Int32)">
+            <summary>
+            Creo un método que me permita modificar el stock de un producto ya existente
+            Obs. Si el valor del stock que se pasa como parámetro es negativo, estoy disminuyendo el stock
+            </summary>
+            <param name="codigoProducto">Código del producto</param>
+            <param name="stock">Nuevo stock del producto</param>
+        </member>
+        <member name="P:ProyectoFinal.Seccion.GetNombre">
+            <summary>
+            Creo un metodo getter para el nombre de la seccion
+            </summary>
+            <value>Nombre de la sección</value>
+        </member>
+        <member name="P:ProyectoFinal.Seccion.GetCapacidad">
+            <summary>
+            Creo un método getter para la capacidad de la seccion
+            </summary>
+            <value>Capacidad de la sección</value>
+        </member>
+        <member name="P:ProyectoFinal.Seccion.CantidadProductos">
+            <summary>
+             Creo un método getter que me de la cantidad de productos totales que tiene la seccion
+            </summary>
+            <value>Cantidad de productos en la sección</value>
+        </member>
+        <member name="T:ProyectoFinal.Usuario">
+            <summary>
+            Clase que representa un Usuario.
+            Se utiliza SRP para delegar responsabilidades a otras clases. 
+            Se utiliza también el patrón Creator (leer archivo readme para más detalles).
+            </summary>
+        </member>
+        <member name="F:ProyectoFinal.Usuario.Nombre">
+            <summary>
+            Atributos de la clase
+            </summary>
+        </member>
+        <member name="M:ProyectoFinal.Usuario.#ctor(System.String)">
+            <summary>
+            Constructor de la clase
+            </summary>
+            <param name="nombre">Nombre del usuario</param>
+        </member>
+        <member name="M:ProyectoFinal.Usuario.AltaProducto(System.String,System.Double,System.Int32,System.String,System.Collections.Generic.List{System.String},System.String,System.String,System.Int32)">
+            <summary>
+            Método que agrega un producto a una sección de un depósito
+            </summary>
+            <param name="nombre">Nombre del producto</param>
+            <param name="precio">Precio del producto</param>
+            <param name="codigo">Código del producto</param>
+            <param name="marca">Marca del producto</param>
+            <param name="categorias">Categoría del producto</param>
+            <param name="nombreSeccion">Nombre de la sección en la cual agrego el producto</param>
+            <param name="nombreDeposito">Nombre del depósito que contiene la sección que agregué el producto</param>
+            <param name="stock">Stock del  producto</param>
+        </member>
+        <member name="M:ProyectoFinal.Usuario.RealizarVenta">
+            <summary>
+            Método que realiza una venta de un producto
+            </summary>
+        </member>
+        <member name="P:ProyectoFinal.Usuario.GetNombre">
+            <summary>
+            Método getter para el nombre
+            </summary>
+            <value>Nombre del usuario</value>
+        </member>
+        <member name="T:ProyectoFinal.VentaIndividual">
+            <summary>
+            Representa la venta individual de un producto. Delegará la responsabilidad de 
+            modificar el stock a la clase Seccion. (para más detalles leer el archivo readme)
+            </summary>
+        </member>
+        <member name="F:ProyectoFinal.VentaIndividual.CodigoProducto">
+            <summary>
+            Quiero que la clase conozca el Producto, la cantidad y la sección donde sacó el producto
+            </summary>
+            <summary>
+            Producto que se quiere vender
+            </summary>
+        </member>
+        <member name="F:ProyectoFinal.VentaIndividual.Cantidad">
+            <summary>
+            Cantidad del producto que se va a vender
+            </summary>
+        </member>
+        <member name="F:ProyectoFinal.VentaIndividual.Seccion">
+            <summary>
+            Seccion de donde se vende el producto
+            </summary>
+        </member>
+        <member name="M:ProyectoFinal.VentaIndividual.#ctor(System.Int32,System.Int32,System.String,System.String)">
+            <summary>
+            Constructor de la clase
+            </summary>
+            <param name="codigoProducto">Código del producto</param>
+            <param name="cantidad">Cantidad del producto que se va a vender</param>
+            <param name="nombreSeccion">Nombre de la seccion del producto que se vende</param>
+            <param name="nombreDeposito">Nombre del deposito del producto que se vende</param>
+        </member>
+        <member name="M:ProyectoFinal.VentaIndividual.DisminuirStockIndividual">
+            <summary>
+            Creo un método que me disminuye el stock de la venta individual
+            </summary>
+        </member>
+        <member name="P:ProyectoFinal.VentaIndividual.GetSeccion">
+            <summary>
+            Creo un método getter que me retorne la sección asociada a la venta individual
+            </summary>
+            <value>Seccion asociada a la venta</value>
+        </member>
+        <member name="P:ProyectoFinal.VentaIndividual.GetCantidad">
+            <summary>
+            Creo un método getter que retorne la cantidad en stock que vendí
+            </summary>
+            <value>Cantidad de stock vendido</value>
+        </member>
+        <member name="T:ProyectoFinal.VentaTotal">
+             <summary>
+             Clase que representa la venta total (contiene la lista de ventas individuales).
+            Se usa el patrón Creator. Creator viene de Usuario cuando hace una venta.
+             También se usa el patrón Expert (leer archivo readme para más detalles).
+             </summary>
+        </member>
+        <member name="F:ProyectoFinal.VentaTotal.Fecha">
+            <summary>
+            Atributos de la clase
+            </summary>
+        </member>
+        <member name="M:ProyectoFinal.VentaTotal.#ctor(System.DateTime)">
+            <summary>
+            Constructor de la clase
+            </summary>
+            <param name="fecha">Fecha de la venta total</param>
+        </member>
+        <member name="M:ProyectoFinal.VentaTotal.AgregarVenta(System.Int32,System.Int32,System.String,System.String)">
+            <summary>
+            Método que me permita agregar ventas individuales a la venta total
+            </summary>
+            <param name="codigoProducto">Código del producto</param>
+            <param name="cantidad">Cantidad del producto</param>
+            <param name="nombreSeccion">Nombre de la sección</param>
+            <param name="nombreDeposito">Nombre del depósito</param>
+            <returns></returns>
+        </member>
+        <member name="M:ProyectoFinal.VentaTotal.RemoveVenta(ProyectoFinal.VentaIndividual)">
+            <summary>
+            Método que me permita agregar ventas individuales a la venta total
+            </summary>
+            <param name="ventaIndividual">Venta individual a eliminar</param>
+        </member>
+        <member name="M:ProyectoFinal.VentaTotal.DisminuirStockTotal">
+            <summary>
+            Creo un método que me modifique el stock luego de la venta
+            </summary>
+        </member>
+        <member name="P:ProyectoFinal.VentaTotal.GetFecha">
+            <summary>
+            Método getter para la fecha de la venta (atributo privado)
+            </summary>
+            <value>Fecha de la venta</value>
+        </member>
+        <member name="P:ProyectoFinal.VentaTotal.GetVentasIndividuales">
+            <summary>
+            Creo un método getter para acceder a la lista de Ventas Individuales
+            </summary>
+            <value>Lista de ventas individuales</value>
+        </member>
+    </members>
+</doc>

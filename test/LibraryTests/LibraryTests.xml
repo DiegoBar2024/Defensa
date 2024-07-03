@@ -1,0 +1,160 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>LibraryTests</name>
+    </assembly>
+    <members>
+        <member name="T:Tests.TestsAdministrador">
+            <summary>
+            Clase que contiene los casos de prueba (test) para las funcionalidades de Administrador.
+            </summary>
+        </member>
+        <member name="M:Tests.TestsAdministrador.Setup">
+            <summary>
+            Creo objetos Administrador y Usuario, sobre los cuales se harán los test.
+            </summary>
+        </member>
+        <member name="M:Tests.TestsAdministrador.Teardown">
+            <summary>
+            Limpieza de test
+            </summary>
+        </member>
+        <member name="M:Tests.TestsAdministrador.Buscar(System.Int32)">
+            <summary>
+            Busco un producto en la lista de depósitos por su código
+            </summary>
+            <param name="codigoProducto">Código del producto buscado</param>
+            <returns>El producto encontrado o en caso que no lo encuentre retorna null</returns>
+        </member>
+        <member name="M:Tests.TestsAdministrador.DarAltaUsuarioSinPermisos">
+            <summary>
+            Test para comprobar la funcionalidad de dar de alta a un usuario sin permisos de administrador
+            </summary>
+        </member>
+        <member name="M:Tests.TestsAdministrador.DarAltaUsuarioConPermisos">
+            <summary>
+            Test para comprobar la funcionalidad de dar de alta un usuario con permisos
+            </summary>
+        </member>
+        <member name="M:Tests.TestsAdministrador.DarAltaProveedor">
+            <summary>
+            Test para verificar la función dar de alta a un proveedor
+            </summary>
+        </member>
+        <member name="M:Tests.TestsAdministrador.CrearDepositos">
+            <summary>
+            Test para verificar la creación de depósitos 
+            </summary>
+        </member>
+        <member name="M:Tests.TestsAdministrador.CrearSecciones">
+            <summary>
+            Test para verificar la creación de secciones
+            </summary>
+        </member>
+        <member name="M:Tests.TestsAdministrador.CrearCategoriasUnProducto">
+            <summary>
+            Test para verificar la función de crear categoría de un solo producto
+            </summary>
+        </member>
+        <member name="M:Tests.TestsAdministrador.CrearCategoriasDosProductos">
+            <summary>
+            Test para verificar la función de aumentar stock de un producto
+            </summary>
+        </member>
+        <member name="M:Tests.TestsAdministrador.VisualizarVentasEnDia">
+            <summary>
+            Test para verificar la función de visualizar las ventas de un día dado
+            </summary>
+        </member>
+        <member name="T:Tests.TestsProveedor">
+            <summary>
+            Clase que tiene los test para la verificación de las funciones que tiene un proveedor
+            </summary>
+        </member>
+        <member name="M:Tests.TestsProveedor.Setup">
+            <summary>
+            Se crean instancias a Administrador, Proveedor y Usuario, sobre los cuales se harán los test.
+            </summary>
+        </member>
+        <member name="M:Tests.TestsProveedor.Teardown">
+            <summary>
+            Limpieza de depósitos
+            </summary>
+        </member>
+        <member name="M:Tests.TestsProveedor.VisualizarStockUnProductoDosSecciones">
+            <summary>
+            Test para comprobar la función de visualizar el stock de un producto en dos secciones distintas
+            </summary>
+        </member>
+        <member name="M:Tests.TestsProveedor.VisualizarStockUnProductoDosDepositos">
+            <summary>
+            Test para comprobar la función de visualizar el stock de un producto en dos depósitos distintos
+            </summary>
+        </member>
+        <member name="M:Tests.TestsProveedor.VisualizarStockDosProductosDosSecciones">
+            <summary>
+            Test para verificar la funcionalidad de visualizar el stock de dos productos distintos en dos secciones distintas
+            </summary>
+        </member>
+        <member name="T:Tests.TestsSeccion">
+            <summary>
+            Clase para las pruebas de la clase Seccion, especialmente para comprobar a la hora de 
+            modificar el stock de una sección.
+            </summary>
+        </member>
+        <member name="M:Tests.TestsSeccion.Setup">
+            <summary>
+            Se crean objetos admin y usuario
+            </summary>
+        </member>
+        <member name="M:Tests.TestsSeccion.Teardown">
+            <summary>
+            Limpieza test
+            </summary>
+        </member>
+        <member name="M:Tests.TestsSeccion.TestModificarStock">
+            <summary>
+            Test para comprobar la funcionalidad de modificar el stock de una determinada 
+            sección.
+            </summary>
+        </member>
+        <member name="T:Tests.TestsUsuario">
+            <summary>
+            Clase que prueba las funcionalidades del Usuario
+            </summary>
+        </member>
+        <member name="M:Tests.TestsUsuario.Setup">
+            <summary>
+            Se crean objetos Administrador y Usuario, sobre los cuales se harán los test.
+            </summary>
+        </member>
+        <member name="M:Tests.TestsUsuario.Teardown">
+            <summary>
+            Limpieza de depósitos
+            </summary>
+        </member>
+        <member name="M:Tests.TestsUsuario.RealizarVenta(System.String[0:,0:])">
+            <summary>
+            Método de prueba para RealizarVenta de usuario
+            La entrada va a ser una matriz de 5 columnas y n filas donde cada fila representa una venta individual
+            Se hace ya que en una clase de Test no podemos interactuar directamente por consola con el usuario
+            </summary>
+            <param name="entradaUsuario"></param>
+        </member>
+        <member name="M:Tests.TestsUsuario.DarAltaProducto">
+            <summary>
+            Test que comprueba la funcionalidad de dar de alta un producto
+            </summary>
+        </member>
+        <member name="M:Tests.TestsUsuario.RealizarVentaUnProducto">
+            <summary>
+            Test que prueba la función de realizar la venta de un producto
+            </summary>
+        </member>
+        <member name="M:Tests.TestsUsuario.RealizarVentaDosProductos">
+            <summary>
+            Test que prueba la función de realizar la venta de dos productos
+            </summary>
+        </member>
+    </members>
+</doc>
