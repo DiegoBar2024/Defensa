@@ -17,13 +17,35 @@ namespace ProyectoFinal
         /// </summary>
         private string Nombre;
 
+        // Atributo que me guarde los depósitos a los que tiene acceso el proveedor
+        private List<IDeposito> DepositosProveedor = new List<IDeposito>();
+
         /// <summary>
         /// Constructor de la clase
         /// </summary>
         /// <param name="nombre">Nombre del proveedor</param>
-        public Proveedor(string nombre)
+        public Proveedor(string nombre, List<string> depositosProveedor)
         {
             this.Nombre = nombre;
+
+            // Itero para cada uno de los nombres de los depositos en la lista de entrada
+            foreach (string nombreDeposito in depositosProveedor)
+            {
+                // Obtengo un buscador
+                IBuscador<IDeposito> buscadorDeposito = BuscadorDepositos.GetBuscadorDepositos(nombreDeposito);
+
+                // Le digo al buscador que busque
+                IDeposito deposito = buscadorDeposito.Buscar();
+
+                // En caso que el deposito no exista, que levante una excepcion
+                if (deposito == null)
+                {
+                    throw new Exception($"El deposito de nombre {nombreDeposito} no existe");
+                }
+
+                // Agrego el deposito a la lista de depositos permitidos
+                this.DepositosProveedor.Add(deposito);
+            }
         }
 
         public Proveedor()
@@ -40,8 +62,8 @@ namespace ProyectoFinal
             // Creo una cadena en donde voy a almacenar el resultado
             StringBuilder cadenaStock = new StringBuilder();
 
-            // Itero para cada uno de los depósitos de la lista de depósitos
-            foreach (IDeposito deposito in ContenedorDepositos.GetDepositos)
+            // Itero para cada uno de los depósitos de la lista de depósitos permitidos
+            foreach (IDeposito deposito in this.DepositosProveedor)
             {
                 cadenaStock.AppendLine($"Para el depósito '{deposito.GetNombre}':");
 

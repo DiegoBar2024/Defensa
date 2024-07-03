@@ -1,5 +1,10 @@
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using ProyectoFinal;
+using System.Collections;
+using System.Linq;
+using System.Text;
 
 namespace ProyectoFinal
 {
@@ -29,7 +34,7 @@ namespace ProyectoFinal
         /// <param name="parametrosProveedor">lista de parámetros para configurar el proveedor</param>
         public static void ConfigurarProveedor(List<string> parametrosProveedor)
         {
-            IntermediarioProveedor.proveedor = new Proveedor(parametrosProveedor[0]);
+            IntermediarioProveedor.proveedor = new Proveedor(parametrosProveedor[0], parametrosProveedor[2].Split(", ").ToList());
         }
     }
 }
