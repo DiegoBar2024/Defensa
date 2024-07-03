@@ -18,9 +18,9 @@ namespace ProyectoFinal
         /// </summary>
         /// <param name="codigo">código del producto</param>
         /// <returns></returns>
-        public static string VisualizarStock(string nombreProducto)
+        public static string VisualizarStock(int codigo)
         {
-            return proveedor.VisualizarStock(nombreProducto);
+            return proveedor.VisualizarStock(codigo);
         }
 
         /// <summary>

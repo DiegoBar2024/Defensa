@@ -13,7 +13,7 @@ namespace Ucu.Poo.TelegramBot
     {
         // Especifico las cadenas de mensaje que se pueden imprimir en el rol de Proveedor
         public const string PROVEEDOR_MENSAJE = "Como proveedor puedes hacer lo siguiente:\n1) Visualizar stock de un producto por código\n2) Salir";
-        public const string VISUALIZAR_STOCK = "Dame el nombre del producto cuyo stock querés ver";
+        public const string VISUALIZAR_STOCK = "Dame el código del producto cuyo stock querés ver";
         public const string CODIGO_NO_ENCONTRADO = "No se encuentra el codigo del producto ingresado. Dame un nuevo codigo";
         public const string OPCION_NO_VALIDA = "La opción ingresada no es válida";
 
@@ -143,10 +143,13 @@ namespace Ucu.Poo.TelegramBot
             // Le pido al proveedor que ingrese un código de producto
             else if (state == EstadoProveedor.VisualizarStock)
             {
+                // Tomo el codigo que me ingresa el proveedor y lo casteo a int
+                int codigoProducto = Convert.ToInt32(message.Text);
+
                 try
                 {
                     // Delego la búsqueda del producto al Intermediario
-                    string result = IntermediarioProveedor.VisualizarStock(message.Text);
+                    string result = IntermediarioProveedor.VisualizarStock(codigoProducto);
                     
                     // Hago que el bot retorne el mensaje adecuado
                     response = $"{result}\n{PROVEEDOR_MENSAJE}";

@@ -648,7 +648,7 @@
             el bot y el programa bajo el acceso de Proveedor
             </summary>
         </member>
-        <member name="M:ProyectoFinal.IntermediarioProveedor.VisualizarStock(System.String)">
+        <member name="M:ProyectoFinal.IntermediarioProveedor.VisualizarStock(System.Int32)">
             <summary>
             Delego el metodo VisualizarStock al objeto proveedor
             </summary>
@@ -850,7 +850,7 @@
             </summary>
             <param name="nombre">Nombre del proveedor</param>
         </member>
-        <member name="M:ProyectoFinal.Proveedor.VisualizarStock(System.String)">
+        <member name="M:ProyectoFinal.Proveedor.VisualizarStock(System.Int32)">
             <summary>
             Método para visualizar el stock en todos los depósitos
             </summary>

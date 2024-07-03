@@ -96,13 +96,5 @@ namespace ProyectoFinal
                 return this.Categorias;
             }
         }
-
-        public string GetNombre
-        {
-            get
-            {
-                return this.Nombre;
-            }
-        }
     }
 }
