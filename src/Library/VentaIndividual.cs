@@ -42,7 +42,7 @@ namespace ProyectoFinal
         public VentaIndividual(int codigoProducto, int cantidad, string nombreSeccion, string nombreDeposito)
         {
             // Instancio un buscador de secciones
-            IBuscador<ISeccion> buscadorSecciones = new BuscadorSecciones(nombreDeposito, nombreSeccion);
+            IBuscador<ISeccion> buscadorSecciones = BuscadorSecciones.GetBuscadorSecciones(nombreDeposito, nombreSeccion);
 
             // Hago la búsqueda de la seccion en base al depósito y en base a la seccion
             ISeccion seccion = buscadorSecciones.Buscar();
@@ -84,6 +84,18 @@ namespace ProyectoFinal
             get
             {
                 return this.Cantidad;
+            }
+        }
+
+        /// <summary>
+        /// Creo un metodo getter para el codigo del producto
+        /// </summary>
+        /// <value></value>
+        public int GetCodigoProducto
+        {
+            get
+            {
+                return this.CodigoProducto;
             }
         }
     }

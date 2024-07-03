@@ -15,6 +15,12 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v2
+        with:
+          submodules: true
+
+      # Update references
+      - name: Git Submodule Update
+        run: git submodule update 
 
       - name: Setup .NET 8.0
         uses: actions/setup-dotnet@v1

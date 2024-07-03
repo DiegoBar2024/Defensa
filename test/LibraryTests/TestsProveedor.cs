@@ -29,7 +29,7 @@ namespace Tests
         public void Setup()
         {
             admin = new Administrador("admin");
-            usuario = new Usuario("usuario");
+            usuario = new Usuario("usuario", new List<string>());
             proveedor = new Proveedor("proveedor");
         }
 
@@ -43,6 +43,34 @@ namespace Tests
             ContenedorDepositos.EliminarDepositos();
         }
 
+        public Dictionary<string, Dictionary<string, int>> VisualizarStock(int codigo)
+        {
+            // Genero un diccionario vacío que me contenga otro diccionario
+            Dictionary<string, Dictionary<string, int>> stockProducto = new Dictionary<string, Dictionary<string, int>>() {};
+
+            // Itero depósito por depósito en el contenedor de depositos
+            foreach (IDeposito deposito in ContenedorDepositos.GetDepositos)
+            {
+                // Itero seccion por seccion dentro del depósito
+                foreach (ISeccion seccion in deposito.GetSecciones)
+                {
+                    // En caso que el diccionario stock ya contenga el deposito
+                    if (stockProducto.Keys.Contains(deposito.GetNombre))
+                    {
+                        stockProducto[deposito.GetNombre].Add(seccion.GetNombre, seccion.CantidadStock(codigo));
+                    }
+
+                    // En caso que el diccionario stock no contenga el deposito
+                    else
+                    {
+                        stockProducto.Add(deposito.GetNombre, new Dictionary<string, int> {{seccion.GetNombre, seccion.CantidadStock(codigo)}});
+                    }
+                }
+            }
+
+            return stockProducto;
+        }
+
         /// <summary>
         /// Test para comprobar la función de visualizar el stock de un producto en dos secciones distintas
         /// </summary>
@@ -50,7 +78,7 @@ namespace Tests
         public void VisualizarStockUnProductoDosSecciones()
         {
             // Creo un depósito
-            admin.CrearDeposito("miDeposito2", "ubicacion", 100, 100);
+            admin.CrearDeposito("miDeposito2", "ubicacion", 100);
 
             // Creo una seccion
             admin.CrearSeccion("miSeccion2a", 100, "miDeposito2");
@@ -68,6 +96,9 @@ namespace Tests
             int stock1 = 50;
             int stock2 = 30;
 
+            // Instancio un nuevo usuario con los permisos correspondientes
+            usuario = new Usuario("usuario", new List<string>() {"miDeposito2"});
+
             // El usuario da de alta producto 1
             usuario.AltaProducto("producto1", 100, codigo1, "marca1", categorias1, "miSeccion2a", "miDeposito2", stock1);
     
@@ -75,7 +106,7 @@ namespace Tests
             usuario.AltaProducto("producto1", 100, codigo1, "marca1", categorias1, "miSeccion2b", "miDeposito2", stock2);
 
             // El proveedor visualiza el stock
-            Dictionary<string ,Dictionary<string, int>> stockProducto = proveedor.VisualizarStock(codigo1);
+            Dictionary<string ,Dictionary<string, int>> stockProducto = VisualizarStock(codigo1);
 
             // Creo una bandera booleana para cada seccion
             bool seccionUnoCorrecta = false;
@@ -123,10 +154,10 @@ namespace Tests
         public void VisualizarStockUnProductoDosDepositos()
         {
             // Creo un depósito
-            admin.CrearDeposito("miDeposito2a", "ubicacion", 100, 100);
+            admin.CrearDeposito("miDeposito2a", "ubicacion", 100);
 
             // Creo otro depósito
-            admin.CrearDeposito("miDeposito2b", "ubicacion", 100, 100);
+            admin.CrearDeposito("miDeposito2b", "ubicacion", 100);
 
             // Creo una seccion
             admin.CrearSeccion("miSeccion2a", 100, "miDeposito2a");
@@ -144,6 +175,9 @@ namespace Tests
             int stock1 = 50;
             int stock2 = 30;
 
+            // Instancio un nuevo usuario con los permisos correspondientes
+            usuario = new Usuario("usuario", new List<string>() {"miDeposito2a", "miDeposito2b"});
+
             // El usuario da de alta producto 1
             usuario.AltaProducto("producto1", 100, codigo1, "marca1", categorias1, "miSeccion2a", "miDeposito2a", stock1);
     
@@ -151,7 +185,7 @@ namespace Tests
             usuario.AltaProducto("producto1", 100, codigo1, "marca1", categorias1, "miSeccion2b", "miDeposito2b", stock2);
 
             // El proveedor visualiza el stock
-            Dictionary<string ,Dictionary<string, int>> stockProducto = proveedor.VisualizarStock(codigo1);
+            Dictionary<string ,Dictionary<string, int>> stockProducto = VisualizarStock(codigo1);
 
             // Creo una bandera booleana para cada seccion
             bool seccionUnoCorrecta = false;
@@ -207,7 +241,7 @@ namespace Tests
         public void VisualizarStockDosProductosDosSecciones()
         {
             // Creo un depósito
-            admin.CrearDeposito("miDeposito", "ubicacion", 100, 100);
+            admin.CrearDeposito("miDeposito", "ubicacion", 100);
 
             // Creo una seccion dentro de éste deposito
             admin.CrearSeccion("miSeccion", 100, "miDeposito");
@@ -233,6 +267,9 @@ namespace Tests
             // Cantidad en stock a dar de alta del producto 2
             int stock2 = 20;
 
+            // Instancio un nuevo usuario con los permisos correspondientes
+            usuario = new Usuario("usuario", new List<string>() {"miDeposito"});
+
             // El usuario da de alta producto 1 en la seccion 'miSeccion' del depósito 'miDeposito'
             usuario.AltaProducto("producto1", 100, codigo1, "marca1", categorias1, "miSeccion", "miDeposito", stock1);
     
@@ -244,7 +281,7 @@ namespace Tests
             bool seccionDosCorrecta = false;
 
             // El proveedor visualiza el stock del producto 1
-            Dictionary<string, Dictionary<string, int>> stockProducto = proveedor.VisualizarStock(codigo1);
+            Dictionary<string, Dictionary<string, int>> stockProducto = VisualizarStock(codigo1);
 
             // Itero deposito por deposito en la lista de depositos
             foreach (IDeposito deposito in ContenedorDepositos.GetDepositos)

@@ -18,9 +18,8 @@ namespace ProyectoFinal
         /// </summary>
 
         public string Nombre;
-        private string Ubicacion;   
+        private string Ubicacion;
         private int Capacidad;
-        private double Distancia;
         private IList ListaSecciones = new ArrayList();
 
         /// <summary>
@@ -31,12 +30,11 @@ namespace ProyectoFinal
         /// <param name="capacidad">Capacidad del depósito</param>
         /// <param name="distancia">Distancia depósitos</param>
 
-        public Deposito(string nombre, string ubicacion, int capacidad, double distancia)
+        public Deposito(string nombre, string ubicacion, int capacidad)
         {
             this.Nombre = nombre;
             this.Ubicacion = ubicacion;
             this.Capacidad = capacidad;
-            this.Distancia = distancia;
         }
 
         /// <summary>
@@ -116,6 +114,18 @@ namespace ProyectoFinal
             get
             {
                 return this.Nombre;
+            }
+        }
+        
+        /// <summary>
+        /// Creo un metodo getter para la ubicacion del deposito
+        /// </summary>
+        /// <value>Ubicacion del deposito</value>
+        public string GetUbicacion
+        {
+            get
+            {
+                return this.Ubicacion;
             }
         }
     }

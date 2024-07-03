@@ -19,7 +19,7 @@ namespace ProyectoFinal
         /// <param name="nombre">Nombre del usuario</param>
         /// <param name="permiso">Si se tienen permisos de administrador</param>
         /// <returns></returns>
-        public static Usuario AltaUsuario(string nombre, string permiso)
+        public static Usuario AltaUsuario(string nombre, string permiso, List<string> nombresDepositos)
         {
             bool Permiso = Convert.ToBoolean(permiso);
             /// <summary>
@@ -46,7 +46,7 @@ namespace ProyectoFinal
             else
             {
                 // Instanciación de un objeto Usuario
-                Usuario usuario = new Usuario(nombre);
+                Usuario usuario = new Usuario(nombre, nombresDepositos);
 
                 // Lo agrego a la lista
                 ContenedorUsuarios.Usuarios.Add(usuario);

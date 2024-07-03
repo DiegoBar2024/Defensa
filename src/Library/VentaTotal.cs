@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Xml.Serialization;
+using System.Text;
 
 namespace ProyectoFinal
 {
@@ -18,6 +19,7 @@ namespace ProyectoFinal
 
         private DateTime Fecha;
         private List<VentaIndividual> VentasIndividuales = new List<VentaIndividual>();
+        private int ID_Venta;
 
         /// <summary>
         /// Constructor de la clase
@@ -54,7 +56,7 @@ namespace ProyectoFinal
             // Retorno la venta individual
             return ventaIndividual;
         }
-        
+
         /// <summary>
         /// Método que me permita agregar ventas individuales a la venta total
         /// </summary>
@@ -68,7 +70,7 @@ namespace ProyectoFinal
             {
                 throw new VentaIndividualNoEncontradaExcepcion("La venta individual no se encuentra en la venta total.");
             }
-            
+
             this.VentasIndividuales.Remove(ventaIndividual);
         }
 
@@ -76,13 +78,23 @@ namespace ProyectoFinal
         /// Creo un método que me modifique el stock luego de la venta
         /// </summary>
 
-        public void DisminuirStockTotal()
+        public void DisminuirStockTotal(StringBuilder cadenaAdvertencia)
         {
             // Itero para cada una de las ventas individuales
             foreach (VentaIndividual ventaIndividual in this.VentasIndividuales)
             {
-                // Modifico el stock de cada venta individual
-                ventaIndividual.DisminuirStockIndividual();
+                // Coloco dentro del bloque try el llamado a la disminución de stock total
+                try
+                {
+                    // Modifico el stock de cada venta individual
+                    ventaIndividual.DisminuirStockIndividual();
+                }
+
+                // En otro caso agrego la excepción al mensaje
+                catch (Exception e)
+                {
+                    cadenaAdvertencia.AppendLine(e.Message);
+                }
             }
         }
 
@@ -98,12 +110,11 @@ namespace ProyectoFinal
                 return this.Fecha;
             }
         }
-
+        
         /// <summary>
         /// Creo un método getter para acceder a la lista de Ventas Individuales
         /// </summary>
         /// <value>Lista de ventas individuales</value>
-
         public IEnumerable<VentaIndividual> GetVentasIndividuales
         {
             get

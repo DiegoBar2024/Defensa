@@ -39,7 +39,7 @@ namespace Tests
             /// Creo un usuario
             /// </summary>
             /// <returns></returns>
-            usuario = new Usuario("usuario");
+            usuario = new Usuario("usuario", new List<string>(){});
         }
 
         /// <summary>
@@ -95,7 +95,7 @@ namespace Tests
             string nombreUsuario = "usuario";
             
             // Le digo al administrador 
-            admin.AltaUsuario(nombreUsuario, "false");
+            admin.AltaUsuario(nombreUsuario, "false", new List<string>(){});
 
             /// <summary>
             /// Creo una bandera
@@ -134,7 +134,7 @@ namespace Tests
             string nombreUsuario = "usuario";
             
             // Le digo al administrador 
-            admin.AltaUsuario(nombreUsuario, "true");
+            admin.AltaUsuario(nombreUsuario, "true", new List<string>() {});
 
             /// <summary>
             /// Creo una bandera
@@ -211,7 +211,7 @@ namespace Tests
             string nombreDeposito = "deposito";
 
             // Creación del deposito
-            admin.CrearDeposito(nombreDeposito, "ubicacion", 100, 100);
+            admin.CrearDeposito(nombreDeposito, "ubicacion", 100);
 
             /// <summary>
             /// Creo una bandera
@@ -249,7 +249,7 @@ namespace Tests
             string nombreDeposito = "deposito";
 
             // El administrador crea un depósito con dicho nombre
-            admin.CrearDeposito(nombreDeposito, "ubicacion", 100, 100);
+            admin.CrearDeposito(nombreDeposito, "ubicacion", 100);
 
             // El administrador crea una seccion dentro de dicho depósito
             admin.CrearSeccion(nombreSeccion, 100, nombreDeposito);
@@ -291,10 +291,13 @@ namespace Tests
             int codigoDos = 3821;
 
             // Creo un depósito
-            admin.CrearDeposito("deposito", "ubicacion", 100, 100);
+            admin.CrearDeposito("deposito", "ubicacion", 100);
 
             // Creo una seccion
             admin.CrearSeccion("seccion", 100, "deposito");
+
+            // Instancio un nuevo usuario con los permisos correspondientes
+            usuario = new Usuario("usuario", new List<string>() {"deposito"});
 
             // El usuario da de alta un producto
             usuario.AltaProducto("producto1", 100, codigoUno, "marca1", new List<string>(){"categoria1"}, "seccion", "deposito", 100);
@@ -340,13 +343,16 @@ namespace Tests
             int codigoUno = 1400;
 
             // Creo un depósito
-            admin.CrearDeposito("deposito", "ubicacion", 100, 100);
+            admin.CrearDeposito("deposito", "ubicacion", 100);
 
             // Creo una seccion
             admin.CrearSeccion("seccion", 100, "deposito");
 
             // Creo otra seccion
             admin.CrearSeccion("seccion1", 100, "deposito");
+
+            // Instancio un nuevo usuario con los permisos correspondientes
+            usuario = new Usuario("usuario", new List<string>() {"deposito"});
 
             // El usuario da de alta un producto
             usuario.AltaProducto("producto1", 100, codigoUno, "marca1", new List<string>(){"categoria1"}, "seccion", "deposito", 50);
@@ -395,6 +401,9 @@ namespace Tests
         [Test]
         public void AumentarStock()
         {
+            // Elimino depositos
+            ContenedorDepositos.EliminarDepositos();
+
             // Cantidad inicial de productos
             int cantidadInicial = 40;
 
@@ -402,13 +411,19 @@ namespace Tests
             int cantidadAgregados = 20;
             
             // Creo un depósito
-            admin.CrearDeposito("deposito", "ubicacion", 100, 100);
+            admin.CrearDeposito("deposito", "ubicacion", 100);
 
             // Creo una seccion
-            admin.CrearSeccion("seccion", 100, "deposito");
+            admin.CrearSeccion("seccionG", 100, "deposito");
+            
+            // Instancio un nuevo usuario con los permisos correspondientes
+            usuario = new Usuario("usuario", new List<string>() {"deposito"});
+            
+            // Instancio un nuevo usuario con los permisos correspondientes
+            usuario = new Usuario("usuario", new List<string>() {"deposito"});
 
             // Le digo al usuario que de de alta un producto
-            usuario.AltaProducto("producto1", 100, 1023, "marca1", new List<string>(){"categoria1"}, "seccion", "deposito", cantidadInicial);
+            usuario.AltaProducto("producto1", 100, 1023, "marca1", new List<string>(){"categoria1"}, "seccionG", "deposito", cantidadInicial);
 
             // El administrador aumenta el stock haciendo una compra
             admin.AumentarStock("deposito", cantidadAgregados, 1023);
@@ -441,26 +456,35 @@ namespace Tests
         [Test]
         public void VisualizarVentasEnDia()
         {
+            // Elimino depositos
+            ContenedorDepositos.EliminarDepositos();
+
+            // Elimino el contenedor de ventas por fecha
+            ContenedorVentasPorFecha.EliminarVentas();
+
             // Creo un depósito
-            admin.CrearDeposito("deposito", "ubicacion", 100, 100);
+            admin.CrearDeposito("deposito", "ubicacion", 100);
 
             // Creo una seccion
-            admin.CrearSeccion("seccion", 100, "deposito");
+            admin.CrearSeccion("seccionZ", 100, "deposito");
+            
+            // Instancio un nuevo usuario con los permisos correspondientes
+            usuario = new Usuario("usuario", new List<string>() {"deposito"});
 
             // El usuario da de alta un producto
-            usuario.AltaProducto("producto1", 100, 101, "marca1", new List<string>(){"categoria1"}, "seccion", "deposito", 20);
+            usuario.AltaProducto("producto1", 100, 101, "marca1", new List<string>(){"categoria1"}, "seccionZ", "deposito", 20);
             
             // El usuario da de alta otro producto
-            usuario.AltaProducto("producto2", 100, 200, "marca2", new List<string>(){"categoria2"}, "seccion", "deposito", 20);
+            usuario.AltaProducto("producto2", 100, 200, "marca2", new List<string>(){"categoria2"}, "seccionZ", "deposito", 20);
 
             // Dia de la venta
-            int diaVenta = 20;
+            int diaVenta = 30;
 
             // Mes de la venta
-            int mesVenta = 2;
+            int mesVenta = 6;
 
             // Año de venta
-            int añoVenta = 2023;
+            int añoVenta = 2024;
 
             // Fecha de la venta
             DateTime fechaVenta = new DateTime(añoVenta, mesVenta, diaVenta);
@@ -472,16 +496,16 @@ namespace Tests
             VentaTotal ventaHoy2 = new VentaTotal(fechaVenta);
 
             // Agrego venta del producto 1 a la venta 1
-            ventaHoy1.AgregarVenta(101, 10, "seccion", "deposito");
+            ventaHoy1.AgregarVenta(101, 10, "seccionZ", "deposito");
 
             // Agrego venta del producto 2 a la venta 1
-            ventaHoy1.AgregarVenta(200, 5, "seccion", "deposito");
+            ventaHoy1.AgregarVenta(200, 5, "seccionZ", "deposito");
 
             // Agrego venta del producto 1 a la venta 2
-            ventaHoy2.AgregarVenta(101, 1, "seccion", "deposito");
+            ventaHoy2.AgregarVenta(101, 1, "seccionZ", "deposito");
 
             // Agrego venta del producto 2 a la venta 2
-            ventaHoy2.AgregarVenta(200, 2, "seccion", "deposito");
+            ventaHoy2.AgregarVenta(200, 2, "seccionZ", "deposito");
 
             // Agrego la venta total al contenedor de ventas por fecha
             ContenedorVentasPorFecha.AgregarVentaPorFecha(ventaHoy1, fechaVenta);

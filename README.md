@@ -1,6 +1,4 @@
 PRIMERA ENTREGA
---------------------------------------------------------------------------
-
 NOTA 1 :Referente al punto 1 de "Criterios de Calificación", decidimdos mantener la estructura lo mas feaciente al UML y CRC hecho por nosotros, sabemos que: deberiamos separar algunos metodos en clases para cumplir con los principios de SRP(CrearDepositos, CrearUsuarios, etc). Será corregido en próximas entregas.
 
 NOTA 2: La no compilacion del código es directamente proporcional a que muchos metodos solo son estructuras, teniendolo en cuenta para futuras entregas.
@@ -8,8 +6,6 @@ NOTA 2: La no compilacion del código es directamente proporcional a que muchos 
 NOTA 3: Los Unit test no fueron creados ya que prescindimos de dichos conocimientos.
 
 SEGUNDA ENTREGA
----------------------------------------------------------------------------
-
 Se comentará por clase los patrones y principos utilizados, detalles de funcionamiento y observaciones de código:
 
 USO DE PRINCIPIOS Y PATRONES EN EL CÓDIGO
@@ -47,3 +43,17 @@ Se podría aplicar en algunos casos el principio ISP para poder asegurar que las
 DESAFÍOS
 
 Se enfrentó a una modalidad de trabajo diferente a la acostumbrada en la carrera de Ingeniería en Telecomunicaciones. En concreto el uso de GitHub fue algo nuevo en conjunto con la complejidad en el estructuramiento del programa usando todos los patrones y principios vistos en el curso.
+
+
+TERCERA ENTREGA 
+----------------------------------------------------------------------------------------------
+Se utiliza el patrón SINGLETON para las siguientes clases: BuscadorDepositos, BuscadorSecciones,  AdministradorHandler, UsuarioHandler y ProveedorHandler. Este patrón busca instanciar por única vez el objeto de una clase.
+
+Por EXPERT asignamos la responsabilidad de obtener la cadena de los nombres de los depósitos a la clase ContenedorDepositos, ya que es la que conoce todos los depósitos que están creados.
+
+*INICIO DE INTERACCIÓN CON EL BOT*
++ Para iniciar la conversación por Telegram se debe usar la palabra clave *hola*. 
+Luego recibirá un mensaje de bienvenida. Posteriormente debe poner la palabra *administrador* para comenzar a interactuar (repitiendo la misma palabra para la contraseña).
++ Las excepciones se mostrarán luego de finalizar el formulario que corresponda a la opción elegida. Éstas mostrarán si fue tomado el formulario correctamente o debe hacerlo nuevamente.
++ Al seleccionar la opción *Salir*, se vuelve al menú principal, es decir, se debe iniciar sesión con el perfil deseado.
++ Para el cálculo de la distancia entre depósitos, la interacción con el usuario es más tardía que el resto.

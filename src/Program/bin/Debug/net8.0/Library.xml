@@ -1,0 +1,1351 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Library</name>
+    </assembly>
+    <members>
+        <member name="T:ProyectoFinal.Administrador">
+            <summary>
+            Clase que representa un Administrador y hereda de la clase Usuario.
+            También en esta clase se utiliza el patrón Creator y Expert.
+            Como principios se utilizó SRP.
+            En el readme se puede encontrar la explicación más detallada del por qué se
+            usaron estos patrones y principios
+            </summary>
+        </member>
+        <member name="M:ProyectoFinal.Administrador.#ctor(System.String)">
+            <summary>
+            Constructor de la clase
+            </summary>
+            <param name="nombre">Nombre del administrador</param>
+            <returns></returns>
+        </member>
+        <member name="M:ProyectoFinal.Administrador.CrearDeposito(System.String,System.String,System.Int32)">
+            <summary>
+            Método para la creación de un depósito
+            </summary>
+            <param name="nombre">Nombre del depósito</param>
+            <param name="ubicacion">Ubicación del depósito</param>
+            <param name="capacidad">Capacidad del depósito</param>
+            <param name="distancia">Distancia depósitos</param>
+        </member>
+        <member name="M:ProyectoFinal.Administrador.CrearSeccion(System.String,System.Int32,System.String)">
+            <summary>
+            Método para crear la sección dentro del depósito
+            </summary>
+            <param name="nombre">Nombre de la sección</param>
+            <param name="capacidad">Capacidad de la sección</param>
+            <param name="nombreDeposito">Nombre del depósito en que se creará la sección</param>
+        </member>
+        <member name="M:ProyectoFinal.Administrador.AltaUsuario(System.String,System.String,System.Collections.Generic.List{System.String})">
+            <summary>
+            Método para dar de alta a un Usuario
+            </summary>
+            <param name="nombre">Nombre del usuario</param>
+            <param name="permiso">Permiso del usuario (administrador o usuario)</param>
+        </member>
+        <member name="M:ProyectoFinal.Administrador.AltaProveedor(System.String)">
+            <summary>
+            Método para dar de alta a un proveedor
+            </summary>
+            <param name="nombre">Nombre del proveedor</param>
+        </member>
+        <member name="M:ProyectoFinal.Administrador.CrearCategoria(System.String,System.Collections.Generic.List{System.Int32})">
+            <summary>
+            Método para crear una categoría 
+            </summary>
+            <param name="categoria">Nombre de la categoría</param>
+            <param name="codigoProductos">Lista de códigos de productos de una categoría</param>
+        </member>
+        <member name="M:ProyectoFinal.Administrador.AumentarStock(System.String,System.Int32,System.Int32)">
+            <summary>
+            Método para aumentar stock de un producto en un determinado depósito 
+            </summary>
+            <param name="nombreDeposito">Nombre del depósito en el que quiero aumentar el stock del producto</param>
+            <param name="stockComprado">Cantidad de stock comprado</param>
+            <param name="codigoProducto">Código del producto</param>
+        </member>
+        <member name="M:ProyectoFinal.Administrador.VentasEnDia(System.DateTime)">
+            <summary>
+            Método para adquirir las ventas realizadas en un día dado
+            </summary>
+            <param name="fecha">Fecha de las ventas realizadas</param>
+            <returns></returns>
+        </member>
+        <member name="M:ProyectoFinal.Administrador.NombresDepositos">
+            <summary>
+            Método que obtiene los nombres de los depósitos
+            </summary>
+            <returns>Cadena que contiene los nombres de los depósitos</returns>
+        </member>
+        <member name="T:ProyectoFinal.BuscadorDepositos">
+            <summary>
+            Creo una clase BuscadorDepositos que se encargue de buscar depositos en base a un nombre
+            Se utiliza el patrón Polimorfismo (leer archivo readme para más detalles).
+            Aplicamos el patrón SINGLETON para ésta clase
+            </summary>
+        </member>
+        <member name="F:ProyectoFinal.BuscadorDepositos.NombreDeposito">
+            <summary>
+            Atributos de la clase
+            </summary>
+        </member>
+        <member name="M:ProyectoFinal.BuscadorDepositos.#ctor">
+            <summary>
+            Constructor de la clase
+            </summary>
+            <param name="nombreDeposito">Nombre del depósito a buscar</param>
+        </member>
+        <member name="M:ProyectoFinal.BuscadorDepositos.Buscar">
+            <summary>
+            Creo un método que me traduzca un nombre de deposito en un deposito
+            </summary>
+            <returns> Depósito correspondiente al nombre o en caso que no se encuentre retorna null</returns>
+        </member>
+        <member name="T:ProyectoFinal.BuscadorSecciones">
+            <summary>
+            Creo una clase BuscadorSecciones que se encargue de buscar secciones en base a datos de entrada
+            Se utiliza el patrón Polimorfismo (leer archivo readme para más detalles).
+            Aplicamos el patrón SINGLETON para ésta clase
+            </summary>
+        </member>
+        <member name="F:ProyectoFinal.BuscadorSecciones.NombreDeposito">
+            <summary>
+            Atributos nombreDeposito y nombreSeccion
+            </summary>
+        </member>
+        <member name="M:ProyectoFinal.BuscadorSecciones.#ctor">
+            <summary>
+            Constructor de la clase
+            </summary>
+            <param name="nombreDeposito">Nombre del depósito donde se encuentra la sección</param>
+            <param name="nombreSeccion">Nombre de la sección que se quiere buscar</param>
+        </member>
+        <member name="M:ProyectoFinal.BuscadorSecciones.Buscar">
+            <summary>
+            Creo un método que busque una sección por nombre dentro de un depósito
+            </summary>
+            <returns>La sección que estoy buscando o en caso contrario retorna null </returns>
+        </member>
+        <member name="T:ProyectoFinal.ContenedorDepositos">
+            <summary>
+            Clase para la creación de objetos del tipo IDeposito.
+            Se usa el patron Creator (leer archivo readme para más detalles).
+            </summary>
+        </member>
+        <member name="M:ProyectoFinal.ContenedorDepositos.AgregarDeposito(System.String,System.String,System.Int32)">
+            <summary>
+            Uso el patrón Creator para asignar la responsabilidad de la creación de un depósito a ésta clase
+            que contiene múltiples objetos Deposito
+            </summary>
+            <param name="nombre">Nombre del depósito</param>
+            <param name="ubicacion">Ubicación del depósito</param>
+            <param name="capacidad">Capacidad del depósito</param>
+            <param name="distancia">Distancia depósitos</param>
+            <returns></returns>
+        </member>
+        <member name="M:ProyectoFinal.ContenedorDepositos.EliminarDepositos">
+            <summary>
+            Creo un método que me elimine todos los depósitos
+            </summary>
+        </member>
+        <member name="P:ProyectoFinal.ContenedorDepositos.GetDepositos">
+            <summary>
+            Creo un método getter que me permita acceder a los depósitos externamente
+            </summary>
+            <value>Depósitos</value>
+        </member>
+        <member name="M:ProyectoFinal.ContenedorDepositos.NombresDepositos">
+            <summary>
+            Creo un metodo que me devuelva los nombres de todos los depositos usando Expert
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:ProyectoFinal.ContenedorProveedores">
+            <summary>
+            Clase que se comporta como un contenedor para almacenar una lista de proveedores
+            Se utiliza el patrón Creator (leer archivo readme para más detalles)
+            </summary>
+        </member>
+        <member name="F:ProyectoFinal.ContenedorProveedores.Proveedores">
+            <summary>
+            Lista estática que contiene los objetos del tipo Proveedor
+            </summary>
+            <typeparam name="Proveedor"></typeparam>
+            <returns></returns>
+        </member>
+        <member name="M:ProyectoFinal.ContenedorProveedores.AltaProveedor(System.String)">
+            <summary>
+            Uso el patrón Creator para crear un proveedor en base a los datos de entrada
+            </summary>
+            <param name="nombre">Nombre del proveedor</param>
+            <returns>El proveedor</returns>
+        </member>
+        <member name="P:ProyectoFinal.ContenedorProveedores.GetProveedores">
+            <summary>
+            Método getter para la lista de proveedores
+            </summary>
+            <value>Proveedores</value>
+        </member>
+        <member name="T:ProyectoFinal.ContenedorUsuarios">
+            <summary>
+            Clase para la creación de objetos del tipo Usuario.
+            Se utiliza el patrón Creator (leer archivo readme para más detalles)
+            </summary>
+        </member>
+        <member name="M:ProyectoFinal.ContenedorUsuarios.AltaUsuario(System.String,System.String,System.Collections.Generic.List{System.String})">
+            <summary>
+            Usando el patrón Creator agrego un usuario a la lista usando los parámetros dados de entrada
+            </summary>
+            <param name="nombre">Nombre del usuario</param>
+            <param name="permiso">Si se tienen permisos de administrador</param>
+            <returns></returns>
+        </member>
+        <member name="P:ProyectoFinal.ContenedorUsuarios.GetUsuarios">
+            <summary>
+            Propiedad (getter) que retorna la lista de usuarios 
+            </summary>
+            <value>Lista de usuarios</value>
+        </member>
+        <member name="T:ProyectoFinal.ContenedorVentasPorFecha">
+            <summary>
+            Creo una nueva clase que contenga una correspondencia entre una fecha y las ventas realizadas
+            Por el patrón Expert, se asigna la responsabilidad a ésta clase de realizar la búsqueda
+            de todas las ventas en un determinado día (leer archivo readme para más detalles)
+            </summary>
+        </member>
+        <member name="M:ProyectoFinal.ContenedorVentasPorFecha.VentasEnDia(System.DateTime)">
+            <summary>
+            Usando el patrón Expert asigno la responsabilidad a ésta clase de hacer las búsquedas por fecha
+            </summary>
+            <param name="fecha">Fecha para las ventas que quiero</param>
+            <returns>Lista de las ventas para la fecha dada</returns>
+        </member>
+        <member name="M:ProyectoFinal.ContenedorVentasPorFecha.AgregarVentaPorFecha(ProyectoFinal.VentaTotal,System.DateTime)">
+            <summary>
+            Agrego un método que me permita agregar una venta total según la fecha al contenedor de ventas por fecha
+            </summary>
+            <param name="ventaTotal">Venta total</param>
+            <param name="fechaVenta">Fecha de la venta</param>
+        </member>
+        <member name="M:ProyectoFinal.ContenedorVentasPorFecha.EliminarVentas">
+            <summary>
+            Creo un metodo que me permita eliminar las ventas realizadas (para el test)
+            </summary>
+        </member>
+        <member name="T:ProyectoFinal.CreadorCategorias">
+            <summary>
+            Creo una clase cuya responsabilidad sea la de crear categorías de productos
+            </summary>
+        </member>
+        <member name="M:ProyectoFinal.CreadorCategorias.CrearCategoria(System.String,System.Collections.Generic.List{System.Int32})">
+            <summary>
+            Método para crear categorías
+            </summary>
+            <param name="categoria">Categoría de los productos</param>
+            <param name="codigosProductos">Lista de códigos de productos</param>
+        </member>
+        <member name="T:ProyectoFinal.Deposito">
+            <summary>
+            Se usa el patrón Creator, esta clase es la ideal para la creación de objetos ISeccion.
+            /// Se crea interfaz IDeposito con el objetivo de utilizar el principio OCP (para mas detalles leer archivo readme)
+            </summary>
+        </member>
+        <member name="F:ProyectoFinal.Deposito.Nombre">
+            <summary>
+            Atributos de la clase
+            </summary>
+        </member>
+        <member name="M:ProyectoFinal.Deposito.#ctor(System.String,System.String,System.Int32)">
+            <summary>
+            Constructor de la clase
+            </summary>
+            <param name="nombre">Nombre del depósito</param>
+            <param name="ubicacion">Ubicación del depósito</param>
+            <param name="capacidad">Capacidad del depósito</param>
+            <param name="distancia">Distancia depósitos</param>
+        </member>
+        <member name="M:ProyectoFinal.Deposito.CrearSeccion(System.String,System.Int32)">
+            <summary>
+            Usando el patrón Creator le asigno al depósito la responsabilidad de crear una seccion
+            </summary>
+            <param name="nombre">Nombre de la sección</param>
+            <param name="capacidad">Capacidad de la sección</param>
+            <returns>La sección</returns>
+        </member>
+        <member name="P:ProyectoFinal.Deposito.GetSecciones">
+            <summary>
+            Construyo un getter para las secciones dentro de un deposito
+            </summary>
+            <value>Las secciones</value>
+        </member>
+        <member name="P:ProyectoFinal.Deposito.GetNombresSecciones">
+            <summary>
+            Construyo método getter que me de los nombres de secciones dentro de un depósito
+            </summary>
+            <value>Lista de nombre de secciones dentro de un depósito</value>
+        </member>
+        <member name="P:ProyectoFinal.Deposito.GetNombre">
+            <summary>
+            Creo un método getter para el nombre del deposito
+            </summary>
+            <value>Nombre del depósito</value>
+        </member>
+        <member name="P:ProyectoFinal.Deposito.GetUbicacion">
+            <summary>
+            Creo un metodo getter para la ubicacion del deposito
+            </summary>
+            <value>Ubicacion del deposito</value>
+        </member>
+        <member name="T:ProyectoFinal.DistanceCalculator">
+            <summary>
+            Un calculador de distancias concreto que utiliza una API de localización para calcular la distancia entre dos
+            direcciones.
+            </summary>
+        </member>
+        <member name="T:ProyectoFinal.DistanceResult">
+            <summary>
+            Una implementación concreta del resutlado de calcular distancias. Además de las propiedades definidas en
+            IDistanceResult esta clase agrega propiedades para acceder a las coordenadas de las direcciones buscadas.
+            </summary>
+        </member>
+        <member name="M:ProyectoFinal.DistanceResult.#ctor(Ucu.Poo.Locations.Client.Location,Ucu.Poo.Locations.Client.Location,System.Double,System.Double)">
+            <summary>
+            Inicializa una nueva instancia de DistanceResult a partir de dos coordenadas, la distancia y el tiempo
+            entre ellas.
+            </summary>
+            <param name="from">Las coordenadas de origen.</param>
+            <param name="to">Las coordenadas de destino.</param>
+            <param name="distance">La distancia entre las coordenadas.</param>
+            <param name="time">El tiempo que se demora en llegar del origen al destino.</param>
+        </member>
+        <member name="T:ProyectoFinal.CapacidadInsuficienteExcepcion">
+            <summary>
+            Excepción que se "activa" cuando la capacidad no es suficiente
+            </summary>
+        </member>
+        <member name="M:ProyectoFinal.CapacidadInsuficienteExcepcion.#ctor(System.String)">
+            <summary>
+            Constructor de la clase
+            </summary>
+            <param name="message"></param>
+            <returns></returns>
+        </member>
+        <member name="T:ProyectoFinal.CategoriaExistenteExcepcion">
+            <summary>
+            Excepción que se "activa" cuando se intenta crear una categoría que ya existe.
+            </summary>
+        </member>
+        <member name="M:ProyectoFinal.CategoriaExistenteExcepcion.#ctor(System.String)">
+            <summary>
+            Constructor de la clase
+            </summary>
+            <param name="message"></param>
+            <returns></returns>
+        </member>
+        <member name="T:ProyectoFinal.CategoriaInvalidaExcepcion">
+            <summary>
+            Excepción que se "activa" cuando se proporciona una categoría que no es válida
+            </summary>
+        </member>
+        <member name="M:ProyectoFinal.CategoriaInvalidaExcepcion.#ctor(System.String)">
+            <summary>
+            Constructor de la clase
+            </summary>
+            <param name="message"></param>
+            <returns></returns>
+        </member>
+        <member name="T:ProyectoFinal.CodigoProductoExistenteExcepcion">
+            <summary>
+             Excepción que se "activa" cuando se intenta agregar un producto con un código que ya existe
+            </summary>
+        </member>
+        <member name="M:ProyectoFinal.CodigoProductoExistenteExcepcion.#ctor(System.String)">
+            <summary>
+            Constructor de la clase
+            </summary>
+            <param name="message"></param>
+            <returns></returns>
+        </member>
+        <member name="T:ProyectoFinal.DepositoNoEncontradoExcepcion">
+            <summary>
+            Excepción que se "activa" cuando un depósito no es encontrado
+            </summary>
+        </member>
+        <member name="M:ProyectoFinal.DepositoNoEncontradoExcepcion.#ctor(System.String)">
+            <summary>
+            Constructor de la clase
+            </summary>
+            <param name="message"></param>
+            <returns></returns>
+        </member>
+        <member name="T:ProyectoFinal.FechaInvalidaExcepcion">
+            <summary>
+            Excepción que se "activa" cuando la fecha no es válida
+            </summary>
+        </member>
+        <member name="M:ProyectoFinal.FechaInvalidaExcepcion.#ctor(System.String)">
+            <summary>
+            Constructor de la clase
+            </summary>
+            <param name="message"></param>
+            <returns></returns>
+        </member>
+        <member name="T:ProyectoFinal.ListaCodigosVaciaExcepcion">
+            <summary>
+            Excepción que se "activa" cuando la lista de códigos estpa vacía
+            </summary>
+        </member>
+        <member name="M:ProyectoFinal.ListaCodigosVaciaExcepcion.#ctor(System.String)">
+            <summary>
+            Constructor de la clase 
+            </summary>
+            <param name="message"></param>
+            <returns></returns>
+        </member>
+        <member name="T:ProyectoFinal.PINInvalidoExcepcion">
+            <summary>
+            Excepción que se "activa" cuando el pin no es válido
+            </summary>
+        </member>
+        <member name="M:ProyectoFinal.PINInvalidoExcepcion.#ctor(System.String)">
+            <summary>
+            Constructor de la clase
+            </summary>
+            <param name="message"></param>
+            <returns></returns>
+        </member>
+        <member name="T:ProyectoFinal.ProveedorNoEncontrado">
+            <summary>
+            Excepción que se "activa" cuando el proveedor no es encontrado
+            </summary>
+        </member>
+        <member name="M:ProyectoFinal.ProveedorNoEncontrado.#ctor(System.String)">
+            <summary>
+            Constructor de la clase
+            </summary>
+            <param name="message"></param>
+            <returns></returns>
+        </member>
+        <member name="T:ProyectoFinal.SeccionExistenteExcepcion">
+            <summary>
+            Excepción que se "activa" cuando la sección a crear ya existe
+            </summary>
+        </member>
+        <member name="M:ProyectoFinal.SeccionExistenteExcepcion.#ctor(System.String)">
+            <summary>
+            Constructor de la clase
+            </summary>
+            <param name="message"></param>
+            <returns></returns>
+        </member>
+        <member name="T:ProyectoFinal.StockInsuficienteExcepcion">
+            <summary>
+            Excepción para cuando el stock no es suficiente para realizar alguna operación con el mismo
+            </summary>
+        </member>
+        <member name="M:ProyectoFinal.StockInsuficienteExcepcion.#ctor(System.String)">
+            <summary>
+            Constructor de la clase
+            </summary>
+            <param name="message"></param>
+            <returns></returns>
+        </member>
+        <member name="T:ProyectoFinal.TipoFuncionarioNoEncontradoExcepcion">
+            <summary>
+            Excepción que se "activa" cuando el tipo de funcionario no es el correcto
+            </summary>
+        </member>
+        <member name="M:ProyectoFinal.TipoFuncionarioNoEncontradoExcepcion.#ctor(System.String)">
+            <summary>
+            Constructor de la clase
+            </summary>
+            <param name="message"></param>
+            <returns></returns>
+        </member>
+        <member name="T:ProyectoFinal.VentaIndividualNoEncontradaExcepcion">
+            <summary>
+            Excepción que se "activa" cuando no es encontrada una venta individual
+            </summary>
+        </member>
+        <member name="M:ProyectoFinal.VentaIndividualNoEncontradaExcepcion.#ctor(System.String)">
+            <summary>
+            Constructor de la clase
+            </summary>
+            <param name="message"></param>
+            <returns></returns>
+        </member>
+        <member name="T:ProyectoFinal.IBuscador`1">
+            <summary>
+            Se define una interfaz genérica 
+            Para más detalle leer el archivo readme
+            </summary>
+            <typeparam name="T">Tipo de objeto que será buscado</typeparam>
+        </member>
+        <member name="M:ProyectoFinal.IBuscador`1.Buscar">
+            <summary>
+            Método para buscar un objeto del tipo T
+            </summary>
+            <returns>Objeto que se encuentra de tipo T</returns>
+        </member>
+        <member name="T:ProyectoFinal.IDeposito">
+            <summary>
+            Interfaz IDeposito. La clase Depósito implementa esta interfaz con el fin de aplicar
+            el principio OCP (leer archivo readme para más detalles).
+            </summary>
+        </member>
+        <member name="P:ProyectoFinal.IDeposito.GetUbicacion">
+            <summary>
+            Se obtiene laubicacion del depósito
+            </summary>
+            <value>ubicacion del depósito</value>
+        </member>
+        <member name="P:ProyectoFinal.IDeposito.GetNombre">
+            <summary>
+            Se obtiene nombre del depósito
+            </summary>
+            <value>Nombre del depósito</value>
+        </member>
+        <member name="P:ProyectoFinal.IDeposito.GetSecciones">
+            <summary>
+            Se obtiene la ubicación del depósito
+            </summary>
+            <value>Ubicación del deposito</value>
+        </member>
+        <member name="M:ProyectoFinal.IDeposito.CrearSeccion(System.String,System.Int32)">
+            <summary>
+            Creación de una sección dentro del depósito 
+            </summary>
+            <param name="nombre">Nombre de la sección</param>
+            <param name="capacidad">Capacidad de la sección</param>
+            <returns>La sección</returns>
+        </member>
+        <member name="T:ProyectoFinal.IDistanceCalculator">
+            <summary>
+            Una interfaz que define una abstracción para un calculador de distancias genérico.
+            </summary>
+            <remarks>
+            Esta interfaz fue creada siguiendo el principio de inversión de dependencias para evitar que los comandos
+            concretos dependan de calculadores de distancias concretos; en su lugar los comandos concretos dependen de esta
+            abstracción.
+            Entre otras cosas est permite cambiar el calculador de distancias en tiempo de ejecución, para utilizar uno en
+            los casos de prueba que retorna resultados conocidos para direcciones conocidas, y otro en la versión final para
+            buscar usando una API de localizaciones.
+            </remarks>
+        </member>
+        <member name="M:ProyectoFinal.IDistanceCalculator.CalculateDistance(System.String,System.String)">
+            <summary>
+            Determina si existe una dirección.
+            </summary>
+            <param name="address">La dirección a buscar.</param>
+            <returns>true si la dirección existe; false en caso contrario.</returns>
+        </member>
+        <member name="T:ProyectoFinal.IDistanceResult">
+            <summary>
+            Una interfaz que define una abstracción para el resultado de calcular distancias.
+            </summary>
+        </member>
+        <member name="P:ProyectoFinal.IDistanceResult.FromExists">
+            <summary>
+            Obtiene un valor que indica si la dirección de origen para el cálculo de distancias existe; sólo se puede
+            calcular la distancia entre direcciones que existen.
+            </summary>
+        </member>
+        <member name="P:ProyectoFinal.IDistanceResult.ToExists">
+            <summary>
+            Obtiene un valor que indica si la dirección de destino para el cálculo de distancias existe; sólo se puede
+            calcular la distancia entre direcciones que existen.
+            </summary>
+        </member>
+        <member name="P:ProyectoFinal.IDistanceResult.Distance">
+            <summary>
+            La distancia calculada.
+            </summary>
+        </member>
+        <member name="P:ProyectoFinal.IDistanceResult.Time">
+            <summary>
+            El tiempo en llegar del origen al destino.
+            </summary>
+        </member>
+        <member name="T:ProyectoFinal.IIntermediario">
+            <summary>
+            Interfaz que define las operaciones de un intermediario para los handlers
+            </summary>
+        </member>
+        <member name="T:ProyectoFinal.IntermediarioAdministrador">
+            <summary>
+            Creo una clase que me implemente la comunicación intermedia entre
+            el bot y el programa bajo el acceso de Administrador
+            </summary>
+        </member>
+        <member name="F:ProyectoFinal.IntermediarioAdministrador.administrador">
+            <summary>
+            Creo un objeto privado administrador al que voy a delegar los métodos
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:ProyectoFinal.IntermediarioAdministrador.CrearDeposito(System.String,System.String,System.Int32)">
+            <summary>
+             Delego el método CrearDeposito al objeto administrador
+            </summary>
+            <param name="nombre">nombre del depósito</param>
+            <param name="ubicacion">ubicación del depósito</param>
+            <param name="capacidad">capacidad que tiene el depósito</param>
+        </member>
+        <member name="M:ProyectoFinal.IntermediarioAdministrador.CrearSeccion(System.String,System.Int32,System.String)">
+            <summary>
+            Delego el método CrearSeccion al objeto administrador
+            </summary>
+            <param name="nombre">nombre de la sección</param>
+            <param name="capacidad">capacidad de la sección</param>
+            <param name="nombreDeposito">nombre del depósito que pertenece la sección</param>
+        </member>
+        <member name="M:ProyectoFinal.IntermediarioAdministrador.AltaUsuario(System.String,System.String,System.Collections.Generic.List{System.String})">
+            <summary>
+            Delego el metodo AltaUsuario al objeto administrador
+            </summary>
+            <param name="nombre">nombre del usuario</param>
+            <param name="permiso">permiso (adminitrador o usuario solo)</param>
+            <param name="nombresDepositos">nombre de los depósitos en los cuales el usuario puede hacer modificaciones</param>
+        </member>
+        <member name="M:ProyectoFinal.IntermediarioAdministrador.AltaProveedor(System.String)">
+            <summary>
+            Delego el metodo AltaProveedor al objeto administrador
+            </summary>
+            <param name="nombre">nombre del proveedor</param>
+        </member>
+        <member name="M:ProyectoFinal.IntermediarioAdministrador.CrearCategoria(System.String,System.Collections.Generic.List{System.Int32})">
+            <summary>
+            Delego el metodo CrearCategoria al objeto administrador
+            </summary>
+            <param name="categoria">nombre de la catogoría</param>
+            <param name="codigoProductos">códigos de los productos asociados a esa categoría</param>
+        </member>
+        <member name="M:ProyectoFinal.IntermediarioAdministrador.AumentarStock(System.String,System.Int32,System.Int32)">
+            <summary>
+            Delego el metodo AumentarStock al objeto administrador
+            </summary>
+            <param name="nombreDeposito">nombre del depósito en el cual aumentaré el stock</param>
+            <param name="stockComprado">cantidad de stock comprado</param>
+            <param name="codigoProducto">código del producto el cual compré</param>
+        </member>
+        <member name="M:ProyectoFinal.IntermediarioAdministrador.VentasEnDia(System.DateTime)">
+            <summary>
+            Delego el metodo VentasEnDia al objeto administrador
+            </summary>
+            <param name="fecha">fecha de la venta </param>
+            <returns>cadena correspondiente a la fecha</returns>
+        </member>
+        <member name="M:ProyectoFinal.IntermediarioAdministrador.NombresDepositos">
+            <summary>
+            Delego el metodo NombresDeposito al objeto administrador
+            </summary>
+            <returns>Cadena que contiene los nombres de los depósitos</returns>
+        </member>
+        <member name="T:ProyectoFinal.IntermediarioProveedor">
+            <summary>
+            Creo una clase que me implemente la comunicación intermedia entre
+            el bot y el programa bajo el acceso de Proveedor
+            </summary>
+        </member>
+        <member name="M:ProyectoFinal.IntermediarioProveedor.VisualizarStock(System.Int32)">
+            <summary>
+            Delego el metodo VisualizarStock al objeto proveedor
+            </summary>
+            <param name="codigo">código del producto</param>
+            <returns></returns>
+        </member>
+        <member name="M:ProyectoFinal.IntermediarioProveedor.ConfigurarProveedor(System.Collections.Generic.List{System.String})">
+            <summary>
+            Creo un metodo que me permita configurar el proveedor
+            </summary>
+            <param name="parametrosProveedor">lista de parámetros para configurar el proveedor</param>
+        </member>
+        <member name="T:ProyectoFinal.IntermediarioUsuario">
+            <summary>
+            Creo una clase que me implemente la comunicación intermedia entre
+            el bot y el programa bajo el acceso de Usuario
+            </summary>
+        </member>
+        <member name="M:ProyectoFinal.IntermediarioUsuario.AltaProducto(System.String,System.Double,System.Int32,System.String,System.Collections.Generic.List{System.String},System.String,System.String,System.Int32)">
+            <summary>
+            Delego el método AltaProducto a Usuario
+            </summary>
+            <param name="nombre">nombre del producto</param>
+            <param name="precio">precio del producto</param>
+            <param name="codigo">código del producto</param>
+            <param name="marca">marca del producto</param>
+            <param name="categorias">categorías a la cual pertenece el producto</param>
+            <param name="nombreSeccion">nombre de la sección en la cual se encuentra el producto</param>
+            <param name="nombreDeposito">nombre del depósito en el cual se encuentra el producto</param>
+            <param name="stock">cantidad de stock del producto</param>
+        </member>
+        <member name="M:ProyectoFinal.IntermediarioUsuario.DepositoMasCercano(System.Int32,System.String)">
+            <summary>
+            Delego el metodo DepositoMasCercano a Usuario
+            </summary>
+            <param name="codigoProducto">código del producto</param>
+            <param name="ubicacionUsuario">ubicación del usuario</param>
+            <returns></returns>
+        </member>
+        <member name="M:ProyectoFinal.IntermediarioUsuario.RealizarVenta(System.Collections.Generic.List{System.Collections.Generic.List{System.String}})">
+            <summary>
+            Delego el método RealizarVenta a Usuario
+            </summary>
+            <param name="ventasIndividuales">representa el resultado de una venta</param>
+            <returns></returns>
+        </member>
+        <member name="M:ProyectoFinal.IntermediarioUsuario.ConfigurarUsuario(System.Collections.Generic.List{System.String})">
+            <summary>
+            Configuración del usuario
+            </summary>
+            <param name="parametrosUsuario">parámetros necesarios para configurar al usuario</param>
+        </member>
+        <member name="T:ProyectoFinal.IProducto">
+            <summary>
+            Interfaz IProducto. La clase Producto implementa esta interfaz con el fin de usar el 
+            principio OCP (para más detalles leer el archivo readme).
+            </summary>
+        </member>
+        <member name="P:ProyectoFinal.IProducto.GetCodigo">
+            <summary>
+            Obtiene el código del producto
+            </summary>
+            <value>El código del producto</value>
+        </member>
+        <member name="P:ProyectoFinal.IProducto.GetCategorias">
+            <summary>
+            Se obtienen las categorías de los productos
+            </summary>
+            <value>Categoría producto</value>
+        </member>
+        <member name="M:ProyectoFinal.IProducto.AgregarCategoria(System.String)">
+            <summary>
+            Se agrega la categoría al producto
+            </summary>
+            <param name="categoria">Categoría</param>
+        </member>
+        <member name="M:ProyectoFinal.IProducto.ExisteCategoria(System.String)">
+            <summary>
+            Se verifica la existencia de la categoría
+            </summary>
+            <param name="categoria">Categoría a ser verificada</param>
+            <returns>true or false</returns>
+        </member>
+        <member name="T:ProyectoFinal.ISeccion">
+            <summary>
+            Interfaz ISeccion. La clase Seccion implementa esta interfaz, con el fin de utilizar 
+            el principio DIP (para más detalles leer el readme)
+            </summary>
+        </member>
+        <member name="P:ProyectoFinal.ISeccion.GetNombre">
+            <summary>
+            Se obtiene el nombre de la sección
+            </summary>
+            <value>El nombre de la sección</value>
+        </member>
+        <member name="P:ProyectoFinal.ISeccion.GetCapacidad">
+            <summary>
+            Se obtiene la capacidad de una sección 
+            </summary>
+            <value>La capacidad de una sección</value>
+        </member>
+        <member name="M:ProyectoFinal.ISeccion.AltaProducto(System.String,System.Double,System.Int32,System.String,System.Collections.Generic.List{System.String},System.Int32)">
+            <summary>
+            Método para dar de alta un producto 
+            </summary>
+            <param name="nombre">Nombre del producto</param>
+            <param name="precio">Precio del producto</param>
+            <param name="codigo">Código del producto</param>
+            <param name="marca">Marca del producto</param>
+            <param name="categorias">Lista de categorías de un producto</param>
+            <param name="stock">Stock de un producto</param>
+        </member>
+        <member name="M:ProyectoFinal.ISeccion.ModificarStock(System.Int32,System.Int32)">
+            <summary>
+            Método para modificar el stock de un producto de la sección
+            </summary>
+            <param name="codigoProducto">Código del producto</param>
+            <param name="stock">Nueva cantidad de stock</param>
+        </member>
+        <member name="P:ProyectoFinal.ISeccion.Productos">
+            <summary>
+            Se obtiene la lista de productos de una sección
+            </summary>
+            <value>Lista de productos de una sección</value>
+        </member>
+        <member name="M:ProyectoFinal.ISeccion.CantidadStock(System.Int32)">
+            <summary>
+            Se obtiene la cantidad de stock de un producto de una sección 
+            </summary>
+            <param name="codigoProducto">Código del producto</param>
+            <returns>Cantidad de stock de un producto</returns>
+        </member>
+        <member name="P:ProyectoFinal.ISeccion.CantidadProductos">
+            <summary>
+            Cantidad de productos en total
+            </summary>
+            <value>Cantidad total de productos</value>
+        </member>
+        <member name="T:ProyectoFinal.Producto">
+            <summary>
+            Esta clase implementa la interfaz IProducto con el fin de aplicar el principio DIP.
+            Para más detalles sobre la implementación de esta clase leer el archivo readme
+            </summary>
+        </member>
+        <member name="F:ProyectoFinal.Producto.Nombre">
+            <summary>
+            Atributos de la clase
+            </summary>
+        </member>
+        <member name="M:ProyectoFinal.Producto.#ctor(System.String,System.Double,System.Int32,System.String,System.Collections.Generic.List{System.String})">
+            <summary>
+            Constructor de la clase
+            </summary>
+            <param name="nombre">Nombre del producto</param>
+            <param name="precio">Precio del producto</param>
+            <param name="codigo">Código del producto</param>
+            <param name="marca">Marca del producto</param>
+            <param name="categorias">Categoría del producto</param>
+        </member>
+        <member name="M:ProyectoFinal.Producto.AgregarCategoria(System.String)">
+            <summary>
+            Método que agrega una categoría
+            </summary>
+            <param name="categoria">Nombre de la categoría que se agrega</param>
+        </member>
+        <member name="M:ProyectoFinal.Producto.ExisteCategoria(System.String)">
+            <summary>
+            Método que verifica si existe la categoría
+            </summary>
+            <param name="categoria">Categoría a verificar</param>
+            <returns>true or false</returns>
+        </member>
+        <member name="P:ProyectoFinal.Producto.GetCodigo">
+            <summary>
+            Método getter para el código del producto
+            </summary>
+            <value>El código del producto</value>
+        </member>
+        <member name="P:ProyectoFinal.Producto.GetCategorias">
+            <summary>
+            Método getter para obtener las categorías de un producto
+            </summary>
+            <value>La categoría del producto</value>
+        </member>
+        <member name="T:ProyectoFinal.Proveedor">
+            <summary>
+            Aquí se aplica el principio de SRP,ya que la única responsabilidad es la de visualizar
+            el stock de un determinado producto para todos los depósitos
+            </summary>
+        </member>
+        <member name="F:ProyectoFinal.Proveedor.Nombre">
+            <summary>
+            Atributos de la clase
+            </summary>
+        </member>
+        <member name="M:ProyectoFinal.Proveedor.#ctor(System.String)">
+            <summary>
+            Constructor de la clase
+            </summary>
+            <param name="nombre">Nombre del proveedor</param>
+        </member>
+        <member name="M:ProyectoFinal.Proveedor.VisualizarStock(System.Int32)">
+            <summary>
+            Método para visualizar el stock en todos los depósitos
+            </summary>
+            <param name="codigo">Código del producto</param>
+            <returns>Diccionario que tiene el stock total de un determinado producto</returns>
+        </member>
+        <member name="P:ProyectoFinal.Proveedor.GetNombre">
+            <summary>
+            Método getter para el nombre del proveedor
+            </summary>
+            <value>Nombre del proveedor</value>
+        </member>
+        <member name="T:ProyectoFinal.Seccion">
+            <summary>
+            Clase que implementa la interfaz ISeccion. Se utiliza el principio DIP.
+            También se utiliza el patrón Creator (para más detalles leer el archivo readme)
+            </summary>
+        </member>
+        <member name="F:ProyectoFinal.Seccion.Nombre">
+            <summary>
+            Atributos de la clase
+            </summary>
+        </member>
+        <member name="M:ProyectoFinal.Seccion.#ctor(System.String,System.Int32)">
+            <summary>
+            Constructor de la clase
+            </summary>
+            <param name="nombre">Nombre de la sección</param>
+            <param name="capacidad">Capacidad de la sección</param>
+        </member>
+        <member name="M:ProyectoFinal.Seccion.AltaProducto(System.String,System.Double,System.Int32,System.String,System.Collections.Generic.List{System.String},System.Int32)">
+            <summary>
+            Usando el patrón Creator hago que la clase seccion me de de alta un producto
+            </summary>
+            <param name="nombre">Nombre del producto</param>
+            <param name="precio">Precio del producto</param>
+            <param name="codigo">Código del producto</param>
+            <param name="marca">Marca del producto</param>
+            <param name="categorias">Categoría del producto</param>
+            <param name="stock">Stock del producto</param>
+        </member>
+        <member name="P:ProyectoFinal.Seccion.Productos">
+            <summary>
+            Propiedad que me diga si la sección contiene un determinado producto o no
+            </summary>
+            <value>Lista de productos</value>
+        </member>
+        <member name="M:ProyectoFinal.Seccion.CantidadStock(System.Int32)">
+            <summary>
+             Método que me retorne la cantidad de stock asociado a un producto
+            </summary>
+            <param name="codigoProducto">Código del producto</param>
+            <returns>Cantidad de stock o 0</returns>
+        </member>
+        <member name="M:ProyectoFinal.Seccion.ModificarStock(System.Int32,System.Int32)">
+            <summary>
+            Creo un método que me permita modificar el stock de un producto ya existente
+            Obs. Si el valor del stock que se pasa como parámetro es negativo, estoy disminuyendo el stock
+            </summary>
+            <param name="codigoProducto">Código del producto</param>
+            <param name="stock">Nuevo stock del producto</param>
+        </member>
+        <member name="P:ProyectoFinal.Seccion.GetNombre">
+            <summary>
+            Creo un metodo getter para el nombre de la seccion
+            </summary>
+            <value>Nombre de la sección</value>
+        </member>
+        <member name="P:ProyectoFinal.Seccion.GetCapacidad">
+            <summary>
+            Creo un método getter para la capacidad de la seccion
+            </summary>
+            <value>Capacidad de la sección</value>
+        </member>
+        <member name="P:ProyectoFinal.Seccion.CantidadProductos">
+            <summary>
+             Creo un método getter que me de la cantidad de productos totales que tiene la seccion
+            </summary>
+            <value>Cantidad de productos en la sección</value>
+        </member>
+        <member name="T:ProyectoFinal.Usuario">
+            <summary>
+            Clase que representa un Usuario.
+            Se utiliza SRP para delegar responsabilidades a otras clases. 
+            Se utiliza también el patrón Creator (leer archivo readme para más detalles).
+            </summary>
+        </member>
+        <member name="F:ProyectoFinal.Usuario.Nombre">
+            <summary>
+            Atributos de la clase: Nombre del usuario y la lista de depóstios asociados
+            </summary>
+        </member>
+        <member name="M:ProyectoFinal.Usuario.#ctor(System.String,System.Collections.Generic.List{System.String})">
+            <summary>
+            Constructor de la clase
+            </summary>
+            <param name="nombre">Nombre del usuario</param>
+        </member>
+        <member name="M:ProyectoFinal.Usuario.#ctor(System.String)">
+            <summary>
+             Constructor vacío (para que se pueda instanciar en uno de los intermediarios)
+            </summary>
+        </member>
+        <member name="M:ProyectoFinal.Usuario.AltaProducto(System.String,System.Double,System.Int32,System.String,System.Collections.Generic.List{System.String},System.String,System.String,System.Int32)">
+            <summary>
+            Método que agrega un producto a una sección de un depósito
+            </summary>
+            <param name="nombre">Nombre del producto</param>
+            <param name="precio">Precio del producto</param>
+            <param name="codigo">Código del producto</param>
+            <param name="marca">Marca del producto</param>
+            <param name="categorias">Categoría del producto</param>
+            <param name="nombreSeccion">Nombre de la sección en la cual agrego el producto</param>
+            <param name="nombreDeposito">Nombre del depósito que contiene la sección que agregué el producto</param>
+            <param name="stock">Stock del  producto</param>
+        </member>
+        <member name="M:ProyectoFinal.Usuario.RealizarVenta(System.Collections.Generic.List{System.Collections.Generic.List{System.String}})">
+            <summary>
+            Método que realiza una venta de un producto
+            </summary>
+        </member>
+        <member name="P:ProyectoFinal.Usuario.GetNombre">
+            <summary>
+            Método getter para el nombre
+            </summary>
+            <value>Nombre del usuario</value>
+        </member>
+        <member name="T:ProyectoFinal.VentaIndividual">
+            <summary>
+            Representa la venta individual de un producto. Delegará la responsabilidad de 
+            modificar el stock a la clase Seccion. (para más detalles leer el archivo readme)
+            </summary>
+        </member>
+        <member name="F:ProyectoFinal.VentaIndividual.CodigoProducto">
+            <summary>
+            Quiero que la clase conozca el Producto, la cantidad y la sección donde sacó el producto
+            </summary>
+            <summary>
+            Producto que se quiere vender
+            </summary>
+        </member>
+        <member name="F:ProyectoFinal.VentaIndividual.Cantidad">
+            <summary>
+            Cantidad del producto que se va a vender
+            </summary>
+        </member>
+        <member name="F:ProyectoFinal.VentaIndividual.Seccion">
+            <summary>
+            Seccion de donde se vende el producto
+            </summary>
+        </member>
+        <member name="M:ProyectoFinal.VentaIndividual.#ctor(System.Int32,System.Int32,System.String,System.String)">
+            <summary>
+            Constructor de la clase
+            </summary>
+            <param name="codigoProducto">Código del producto</param>
+            <param name="cantidad">Cantidad del producto que se va a vender</param>
+            <param name="nombreSeccion">Nombre de la seccion del producto que se vende</param>
+            <param name="nombreDeposito">Nombre del deposito del producto que se vende</param>
+        </member>
+        <member name="M:ProyectoFinal.VentaIndividual.DisminuirStockIndividual">
+            <summary>
+            Creo un método que me disminuye el stock de la venta individual
+            </summary>
+        </member>
+        <member name="P:ProyectoFinal.VentaIndividual.GetSeccion">
+            <summary>
+            Creo un método getter que me retorne la sección asociada a la venta individual
+            </summary>
+            <value>Seccion asociada a la venta</value>
+        </member>
+        <member name="P:ProyectoFinal.VentaIndividual.GetCantidad">
+            <summary>
+            Creo un método getter que retorne la cantidad en stock que vendí
+            </summary>
+            <value>Cantidad de stock vendido</value>
+        </member>
+        <member name="P:ProyectoFinal.VentaIndividual.GetCodigoProducto">
+            <summary>
+            Creo un metodo getter para el codigo del producto
+            </summary>
+            <value></value>
+        </member>
+        <member name="T:ProyectoFinal.VentaTotal">
+             <summary>
+             Clase que representa la venta total (contiene la lista de ventas individuales).
+            Se usa el patrón Creator. Creator viene de Usuario cuando hace una venta.
+             También se usa el patrón Expert (leer archivo readme para más detalles).
+             </summary>
+        </member>
+        <member name="F:ProyectoFinal.VentaTotal.Fecha">
+            <summary>
+            Atributos de la clase
+            </summary>
+        </member>
+        <member name="M:ProyectoFinal.VentaTotal.#ctor(System.DateTime)">
+            <summary>
+            Constructor de la clase
+            </summary>
+            <param name="fecha">Fecha de la venta total</param>
+        </member>
+        <member name="M:ProyectoFinal.VentaTotal.AgregarVenta(System.Int32,System.Int32,System.String,System.String)">
+            <summary>
+            Método que me permita agregar ventas individuales a la venta total
+            </summary>
+            <param name="codigoProducto">Código del producto</param>
+            <param name="cantidad">Cantidad del producto</param>
+            <param name="nombreSeccion">Nombre de la sección</param>
+            <param name="nombreDeposito">Nombre del depósito</param>
+            <returns></returns>
+        </member>
+        <member name="M:ProyectoFinal.VentaTotal.RemoveVenta(ProyectoFinal.VentaIndividual)">
+            <summary>
+            Método que me permita agregar ventas individuales a la venta total
+            </summary>
+            <param name="ventaIndividual">Venta individual a eliminar</param>
+        </member>
+        <member name="M:ProyectoFinal.VentaTotal.DisminuirStockTotal(System.Text.StringBuilder)">
+            <summary>
+            Creo un método que me modifique el stock luego de la venta
+            </summary>
+        </member>
+        <member name="P:ProyectoFinal.VentaTotal.GetFecha">
+            <summary>
+            Método getter para la fecha de la venta (atributo privado)
+            </summary>
+            <value>Fecha de la venta</value>
+        </member>
+        <member name="P:ProyectoFinal.VentaTotal.GetVentasIndividuales">
+            <summary>
+            Creo un método getter para acceder a la lista de Ventas Individuales
+            </summary>
+            <value>Lista de ventas individuales</value>
+        </member>
+        <member name="T:Ucu.Poo.TelegramBot.AdministradorHandler">
+            <summary>
+            Un "handler" del patrón Chain of Responsibility que implementa el comando "dirección".
+            </summary>
+        </member>
+        <member name="P:Ucu.Poo.TelegramBot.AdministradorHandler.StateForUser">
+            <summary>
+            El estado del comando para un usuario que envía un mensaje. Cuando se comienza a procesar el comando para un
+            nuevo usuario se agrega a este diccionario y cuando se termina de procesar el comando se remueve.
+            </summary>
+        </member>
+        <!-- Badly formed XML comment ignored for member "M:Ucu.Poo.TelegramBot.AdministradorHandler.CanHandle(Telegram.Bot.Types.Message)" -->
+        <member name="M:Ucu.Poo.TelegramBot.AdministradorHandler.InternalHandle(Telegram.Bot.Types.Message,System.String@)">
+            <summary>
+            Procesa todos los mensajes y retorna true siempre.
+            </summary>
+            <param name="message">El mensaje a procesar.</param>
+            <param name="response">La respuesta al mensaje procesado indicando que el mensaje no pudo se procesado.</param>
+            <returns>true si el mensaje fue procesado; false en caso contrario.</returns>
+        </member>
+        <member name="M:Ucu.Poo.TelegramBot.AdministradorHandler.InternalCancel(Telegram.Bot.Types.Message)">
+            <summary>
+            Retorna este "handler" al estado inicial.
+            </summary>
+        </member>
+        <member name="T:Ucu.Poo.TelegramBot.AutenticadorHandler">
+            <summary>
+            Un "handler" del patrón Chain of Responsibility que implementa el comando "dirección".
+            </summary>
+        </member>
+        <member name="M:Ucu.Poo.TelegramBot.AutenticadorHandler.AgregarPerfil(System.String,System.String)">
+            <summary>
+            Metodo para agregar perfiles al diccionario
+            </summary>
+            <param name="clave"></param>
+        </member>
+        <member name="P:Ucu.Poo.TelegramBot.AutenticadorHandler.StateForUser">
+            <summary>
+            El estado del comando para un usuario que envía un mensaje. Cuando se comienza a procesar el comando para un
+            nuevo usuario se agrega a este diccionario y cuando se termina de procesar el comando se remueve.
+            </summary>
+        </member>
+        <member name="M:Ucu.Poo.TelegramBot.AutenticadorHandler.#ctor(Ucu.Poo.TelegramBot.BaseHandler)">
+            <summary>
+            Inicializa una nueva instancia de la clase <see cref="T:Ucu.Poo.TelegramBot.ProveedorHandler"/>.
+            </summary>
+            <param name="next">El próximo "handler".</param>
+        </member>
+        <!-- Badly formed XML comment ignored for member "M:Ucu.Poo.TelegramBot.AutenticadorHandler.CanHandle(Telegram.Bot.Types.Message)" -->
+        <member name="M:Ucu.Poo.TelegramBot.AutenticadorHandler.InternalHandle(Telegram.Bot.Types.Message,System.String@)">
+            <summary>
+            Procesa todos los mensajes y retorna true siempre.
+            </summary>
+            <param name="message">El mensaje a procesar.</param>
+            <param name="response">La respuesta al mensaje procesado indicando que el mensaje no pudo se procesado.</param>
+            <returns>true si el mensaje fue procesado; false en caso contrario.</returns>
+        </member>
+        <member name="M:Ucu.Poo.TelegramBot.AutenticadorHandler.InternalCancel(Telegram.Bot.Types.Message)">
+            <summary>
+            Retorna este "handler" al estado inicial.
+            </summary>
+        </member>
+        <member name="T:Ucu.Poo.TelegramBot.BaseHandler">
+            <summary>
+            Clase base para implementar el patrón
+            <a href="https://refactoring.guru/design-patterns/chain-of-responsibility">Chain of Responsibility</a>. En ese
+            patrón se pasa un mensaje a través de una cadena de "handlers" que pueden procesar o no el mensaje. Cada
+            "handler" decide si procesa el mensaje, o si se lo pasa al siguiente. Esta clase base implmementa la
+            responsabilidad de recibir el mensaje y pasarlo al siguiente "handler" en caso que el mensaje no sea procesado.
+            La responsabilidad de decidir si el mensaje se procesa o no, y de procesarlo, se delega a las clases sucesoras
+            de esta clase base.
+            <remarks>
+            Esta clase se crea en base al <a href="https://github.com/ucudal/PII_Principios_Patrones/blob/master/OCP.md">
+            principio abierto/cerrado</a> ya que la lógica de funcionamiento de la cadena de responsabilidad no puede ser
+            modificada por las clases sucesoras -la clase es cerrada a la modificación-, por un lado, pero el procesamiento
+            concreto de los mensajes se realiza en las clases sucesoras –la clase está abierta a la modificación–.
+            </remarks>
+            <remarks>
+            La cadena de responsabilidad implementada con esta clase y sus sucesoras utiliza el patrón GRASP
+            <a href="https://github.com/ucudal/PII_Principios_Patrones/blob/master/Polymorphism.md">polimorfismo</a> pues
+            evita preguntar por la clase capaz de procesar un mensaje, asignando la reponsabilidad de procesar el mensaje
+            en operaciones polimórficas –métodos virtuales– cuya implementación concreta se delega a los sucesores.
+            </remarks>
+            <remarks>
+            Esta clase usa el patrón <a href="https://refactoring.guru/design-patterns/template-method">Template
+            Method</a>: el método <see cref="M:Ucu.Poo.TelegramBot.BaseHandler.Handle(Telegram.Bot.Types.Message,System.String@)"/> tiene la lógica para procesar
+            un comando, que incluye determinar si se puede procesar o no el comando, y en caso de que no se pueda procesar
+            el comando, pasar el mensaje al siguiente "handler"; sin embargo, la lógica para procesar efectivamente el
+            comando, se delega a los sucesores a través del método virtual
+            <see cref="M:Ucu.Poo.TelegramBot.BaseHandler.InternalHandle(Telegram.Bot.Types.Message,System.String@)"/>; al mismo tiempo, aunque se provee la lógica
+            predeterminada para determinar si se puede procesar un mensaje o no, en el método
+            <see cref="M:Ucu.Poo.TelegramBot.BaseHandler.CanHandle(Telegram.Bot.Types.Message)"/>, los sucesores pueden sobrescribir este método para proveer otro
+            comportamiento.
+            </remarks>
+            </summary>
+        </member>
+        <member name="P:Ucu.Poo.TelegramBot.BaseHandler.Next">
+            <summary>
+            Obtiene el próximo "handler".
+            </summary>
+            <value>El "handler" que será invocado si este "handler" no procesa el mensaje.</value>
+        </member>
+        <member name="P:Ucu.Poo.TelegramBot.BaseHandler.Keywords">
+            <summary>
+            Obtiene o asigna el conjunto de palabras clave que este "handler" puede procesar.
+            </summary>
+            <value>Un array de palabras clave.</value>
+        </member>
+        <member name="M:Ucu.Poo.TelegramBot.BaseHandler.#ctor(Ucu.Poo.TelegramBot.IHandler)">
+            <summary>
+            Inicializa una nueva instancia de la clase <see cref="T:Ucu.Poo.TelegramBot.BaseHandler"/>.
+            </summary>
+            <param name="next">El próximo "handler".</param>
+        </member>
+        <member name="M:Ucu.Poo.TelegramBot.BaseHandler.#ctor(System.String[],Ucu.Poo.TelegramBot.BaseHandler)">
+            <summary>
+            Inicializa una nueva instancia de la clase <see cref="T:Ucu.Poo.TelegramBot.BaseHandler"/> con una lista de comandos.
+            </summary>
+            <param name="keywords">La lista de comandos.</param>
+            <param name="next">El próximo "handler".</param>
+        </member>
+        <member name="M:Ucu.Poo.TelegramBot.BaseHandler.InternalHandle(Telegram.Bot.Types.Message,System.String@)">
+            <summary>
+            Este método debe ser sobreescrito por las clases sucesores. La clase sucesora procesa el mensaje y asigna
+            la respuesta al mensaje.
+            </summary>
+            <param name="message">El mensaje a procesar.</param>
+            <param name="response">La respuesta al mensaje procesado.</param>
+        </member>
+        <member name="M:Ucu.Poo.TelegramBot.BaseHandler.InternalCancel(Telegram.Bot.Types.Message)">
+            <summary>
+            Este método puede ser sobreescrito en las clases sucesores que procesan varios mensajes cambiando de estado
+            entre mensajes deben sobreescribir este método para volver al estado inicial. En la clase base no hace nada.
+            </summary>
+        </member>
+        <member name="M:Ucu.Poo.TelegramBot.BaseHandler.CanHandle(Telegram.Bot.Types.Message)">
+            <summary>
+            Determina si este "handler" puede procesar el mensaje. En la clase base se utiliza el array
+            <see cref="P:Ucu.Poo.TelegramBot.BaseHandler.Keywords"/> para buscar el texto en el mensaje ignorando mayúsculas y minúsculas. Las
+            clases sucesores pueden sobreescribir este método para proveer otro mecanismo para determina si procesan o no
+            un mensaje.
+            </summary>
+            <param name="message">El mensaje a procesar.</param>
+            <returns>true si el mensaje puede ser pocesado; false en caso contrario.</returns>
+        </member>
+        <member name="M:Ucu.Poo.TelegramBot.BaseHandler.Handle(Telegram.Bot.Types.Message,System.String@)">
+            <summary>
+            Procesa el mensaje o lo pasa al siguiente "handler" si existe.
+            </summary>
+            <param name="message">El mensaje a procesar.</param>
+            <param name="response">La respuesta al mensaje procesado.</param>
+            <returns>El "handler" que procesó el mensaje si el mensaje fue procesado; null en caso contrario.</returns>
+        </member>
+        <member name="M:Ucu.Poo.TelegramBot.BaseHandler.Cancel(Telegram.Bot.Types.Message)">
+            <summary>
+            Retorna este "handler" al estado inicial. En los "handler" sin estado no hace nada. Los "handlers" que
+            procesan varios mensajes cambiando de estado entre mensajes deben sobreescribir este método para volver al
+            estado inicial.
+            </summary>
+        </member>
+        <member name="T:Ucu.Poo.TelegramBot.IHandler">
+            <summary>
+            Interfaz para implementar el patrón
+            <a href="https://refactoring.guru/design-patterns/chain-of-responsibility">Chain of Responsibility</a>. En ese
+            patrón se pasa un mensaje a través de una cadena de "handlers" que pueden procesar o no el mensaje. Cada
+            "handler" decide si procesa el mensaje, o si se lo pasa al siguiente. Esta interfaz define un atributo para
+            definir el próximo "handler" y una una operación para recibir el mensaje y pasarlo al siguiente "handler" en
+            caso que el mensaje no sea procesado. La responsabilidad de decidir si el mensaje se procesa o no, y de
+            procesarlo, se realiza en las clases que implementan esta interfaz.
+            <remarks>
+            La interfaz se crea en función del <a href="https://github.com/ucudal/PII_Principios_Patrones/blob/master/DIP.md">
+            principio de inversión de dependencias</a>, para que los clientes de la cadena de responsabilidad, que pueden
+            ser concretos, no dependan de una clase "handler" que potencialmente es abstracta.
+            </remarks>
+            <remarks>
+            Esta clase aplica el <a href="https://github.com/ucudal/PII_Principios_Patrones/blob/master/LSP.md">principio de
+            sustitución de Liskov</a> pues el comportamiento de procesar un mensaje no cambia al sustituir objetos que
+            implementan esta interfaz unos por otros –todos pueden ser parte de la cadena de responsabilidad– pues las
+            clases de esos objetos son subtipos del tipo definido en esta interfaz.
+            </remarks>
+            </summary>
+        </member>
+        <member name="P:Ucu.Poo.TelegramBot.IHandler.Next">
+            <summary>
+            Obtiene el próximo "handler".
+            </summary>
+            <value>El "handler" que será invocado si este "handler" no procesa el mensaje.</value>
+        </member>
+        <member name="M:Ucu.Poo.TelegramBot.IHandler.Handle(Telegram.Bot.Types.Message,System.String@)">
+            <summary>
+            Procesa el mensaje o la pasa al siguiente "handler" si existe.
+            </summary>
+            <param name="message">El mensaje a procesar.</param>
+            <param name="response">La respuesta al mensaje procesado.</param>
+            <returns>El "handler" que procesó el mensaje si el mensaje fue procesado; null en caso contrario.</returns>
+        </member>
+        <member name="M:Ucu.Poo.TelegramBot.IHandler.Cancel(Telegram.Bot.Types.Message)">
+            <summary>
+            Retorna este "handler" al estado inicial y cancela el próximo "handler" si existe. Es utilizado para que los
+            "handlers" que procesan varios mensajes cambiando de estado entre mensajes puedan volver al estado inicial en
+            caso de error por ejemplo.
+            </summary>
+        </member>
+        <member name="T:Ucu.Poo.TelegramBot.ProveedorHandler">
+            <summary>
+            Un "handler" del patrón Chain of Responsibility que implementa el comando "dirección".
+            </summary>
+        </member>
+        <member name="P:Ucu.Poo.TelegramBot.ProveedorHandler.StateForUser">
+            <summary>
+            El estado del comando para un usuario que envía un mensaje. Cuando se comienza a procesar el comando para un
+            nuevo usuario se agrega a este diccionario y cuando se termina de procesar el comando se remueve.
+            </summary>
+        </member>
+        <!-- Badly formed XML comment ignored for member "M:Ucu.Poo.TelegramBot.ProveedorHandler.CanHandle(Telegram.Bot.Types.Message)" -->
+        <member name="M:Ucu.Poo.TelegramBot.ProveedorHandler.InternalHandle(Telegram.Bot.Types.Message,System.String@)">
+            <summary>
+            Procesa todos los mensajes y retorna true siempre.
+            </summary>
+            <param name="message">El mensaje a procesar.</param>
+            <param name="response">La respuesta al mensaje procesado indicando que el mensaje no pudo se procesado.</param>
+            <returns>true si el mensaje fue procesado; false en caso contrario.</returns>
+        </member>
+        <member name="M:Ucu.Poo.TelegramBot.ProveedorHandler.InternalCancel(Telegram.Bot.Types.Message)">
+            <summary>
+            Retorna este "handler" al estado inicial.
+            </summary>
+        </member>
+        <member name="T:Ucu.Poo.TelegramBot.ProveedorHandler.EstadoProveedor">
+            <summary>
+            Indica los diferentes estados que puede tener el comando AddressHandler.
+            - Start: El estado inicial del comando. En este estado el comando pide una dirección de origen y pasa al
+            siguiente estado.
+            - AddressPrompt: Luego de pedir la dirección. En este estado el comando obtiene las coordenadas de la
+            dirección y vuelve al estado Start.
+            </summary>
+        </member>
+        <member name="T:Ucu.Poo.TelegramBot.UsuarioHandler">
+            <summary>
+            Un "handler" del patrón Chain of Responsibility que implementa el comando "dirección".
+            </summary>
+        </member>
+        <member name="P:Ucu.Poo.TelegramBot.UsuarioHandler.StateForUser">
+            <summary>
+            El estado del comando para un usuario que envía un mensaje. Cuando se comienza a procesar el comando para un
+            nuevo usuario se agrega a este diccionario y cuando se termina de procesar el comando se remueve.
+            </summary>
+        </member>
+        <!-- Badly formed XML comment ignored for member "M:Ucu.Poo.TelegramBot.UsuarioHandler.CanHandle(Telegram.Bot.Types.Message)" -->
+        <member name="M:Ucu.Poo.TelegramBot.UsuarioHandler.InternalHandle(Telegram.Bot.Types.Message,System.String@)">
+            <summary>
+            Procesa todos los mensajes y retorna true siempre.
+            </summary>
+            <param name="message">El mensaje a procesar.</param>
+            <param name="response">La respuesta al mensaje procesado indicando que el mensaje no pudo se procesado.</param>
+            <returns>true si el mensaje fue procesado; false en caso contrario.</returns>
+        </member>
+        <member name="M:Ucu.Poo.TelegramBot.UsuarioHandler.InternalCancel(Telegram.Bot.Types.Message)">
+            <summary>
+            Retorna este "handler" al estado inicial.
+            </summary>
+        </member>
+    </members>
+</doc>

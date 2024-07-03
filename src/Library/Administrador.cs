@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
-
+using System.Reflection;
 using System.Xml.Serialization;
 
 namespace ProyectoFinal
@@ -31,10 +31,10 @@ namespace ProyectoFinal
                 /// <param name="ubicacion">Ubicación del depósito</param>
                 /// <param name="capacidad">Capacidad del depósito</param>
                 /// <param name="distancia">Distancia depósitos</param>
-                public void CrearDeposito(string nombre, string ubicacion, int capacidad, double distancia)
+                public void CrearDeposito(string nombre, string ubicacion, int capacidad)
                 {
                         // CREATOR --> Paso los parámetros del depósito a crear para que se encargue DepositContainer
-                        ContenedorDepositos.AgregarDeposito(nombre, ubicacion, capacidad, distancia);
+                        ContenedorDepositos.AgregarDeposito(nombre, ubicacion, capacidad);
                 }
 
                 /// <summary>
@@ -46,17 +46,17 @@ namespace ProyectoFinal
                 public void CrearSeccion(string nombre, int capacidad, string nombreDeposito)
                 {
                         // Creo un buscador de depósitos pasando como parámetro el nombre del depósito
-                        IBuscador<IDeposito> buscadorDepositos = new BuscadorDepositos(nombreDeposito);
+                        IBuscador<IDeposito> buscadorDepositos = BuscadorDepositos.GetBuscadorDepositos(nombreDeposito);
 
                         // Busco el depósito usando el método Buscar() del buscador
                         IDeposito deposito = buscadorDepositos.Buscar();
 
                         // En caso que el depósito ingresado no exista, que me levante una excepción del tipo DepositoNoEncontradoExcepcion
-                        if (deposito.Equals(null))
+                        if (deposito == null)
                         {
-                                throw new DepositoNoEncontradoExcepcion($"El depósito {nombreDeposito} no fue encontrado");
+                                throw new DepositoNoEncontradoExcepcion($"El depósito <<{nombreDeposito}>> no fue encontrado");
                         }
-                
+
                         // CREATOR --> Paso los parámetros de la sección a cerar para que se encargue de crearlo el depósito mismo
                         deposito.CrearSeccion(nombre, capacidad);
                 }
@@ -67,12 +67,12 @@ namespace ProyectoFinal
                 /// <param name="nombre">Nombre del usuario</param>
                 /// <param name="permiso">Permiso del usuario (administrador o usuario)</param>
 
-                public void AltaUsuario(string nombre, string permiso)
+                public void AltaUsuario(string nombre, string permiso, List<string> nombresDepositos)
                 {
                         // CREATOR --> Delego la reponsabilidad de dar de alta un usuario a la clase UserContainer
-                        ContenedorUsuarios.AltaUsuario(nombre, permiso);
+                        ContenedorUsuarios.AltaUsuario(nombre, permiso, nombresDepositos);
                 }
-                
+
                 /// <summary>
                 /// Método para dar de alta a un proveedor
                 /// </summary>
@@ -102,10 +102,10 @@ namespace ProyectoFinal
                 /// <param name="stockComprado">Cantidad de stock comprado</param>
                 /// <param name="codigoProducto">Código del producto</param>
 
-        public void AumentarStock(string nombreDeposito, int stockComprado, int codigoProducto)
-        {
-            // Instancio un buscador de depositos
-            IBuscador<IDeposito> buscadorDepositos = new BuscadorDepositos(nombreDeposito);
+                public void AumentarStock(string nombreDeposito, int stockComprado, int codigoProducto)
+                {
+                        // Instancio un buscador de depositos
+                        IBuscador<IDeposito> buscadorDepositos = BuscadorDepositos.GetBuscadorDepositos(nombreDeposito);
 
                         // Busco el depósito con el nombre pasado como parámetro
                         IDeposito deposito = buscadorDepositos.Buscar();
@@ -116,14 +116,14 @@ namespace ProyectoFinal
                                 throw new DepositoNoEncontradoExcepcion($"El depósito {nombreDeposito} no fue encontrado");
                         }
 
-            // Itero en cada una de las secciones del depósito
-            foreach (ISeccion seccion in deposito.GetSecciones)
-            {
-                // En caso que ya no tenga más stock para asignar, termino el bucle
-                if (stockComprado == 0)
-                {
-                    break;
-                }
+                        // Itero en cada una de las secciones del depósito
+                        foreach (ISeccion seccion in deposito.GetSecciones)
+                        {
+                                // En caso que ya no tenga más stock para asignar, termino el bucle
+                                if (stockComprado == 0)
+                                {
+                                        break;
+                                }
 
                                 if (seccion.GetCapacidad > seccion.CantidadProductos)
                                 {
@@ -131,15 +131,15 @@ namespace ProyectoFinal
                                         {
                                                 seccion.ModificarStock(codigoProducto, seccion.GetCapacidad - seccion.CantidadProductos);
                                                 stockComprado -= seccion.GetCapacidad - seccion.CantidadProductos;
-                                        }   
+                                        }
 
-                                        else if (stockComprado <= seccion.GetCapacidad-seccion.CantidadProductos)
+                                        else if (stockComprado <= seccion.GetCapacidad - seccion.CantidadProductos)
                                         {
                                                 seccion.ModificarStock(codigoProducto, stockComprado);
                                                 stockComprado = 0;
-                                        }    
+                                        }
                                 }
-                                
+
                                 else
                                 {
                                         continue;
@@ -164,6 +164,15 @@ namespace ProyectoFinal
                 {
                         // EXPERT --> Delego la responsabilidad de buscar las ventas por día a la clase ContenedorVentasPorFecha
                         return ContenedorVentasPorFecha.VentasEnDia(fecha);
+                }
+                /// <summary>
+                /// Método que obtiene los nombres de los depósitos
+                /// </summary>
+                /// <returns>Cadena que contiene los nombres de los depósitos</returns>
+                public string NombresDepositos()
+                {
+                        // EXPERT --> Delego la responsabilidad de obtener los nombres de todos los depositos a la clase ContenedorDepositos
+                        return ContenedorDepositos.NombresDepositos();
                 }
         }
 }

@@ -1,0 +1,3 @@
+[submodule "PII_LocationApiClient"]
+	path = PII_LocationApiClient
+	url = https://github.com/ucudal/PII_LocationApiClient

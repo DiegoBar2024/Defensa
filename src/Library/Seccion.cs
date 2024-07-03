@@ -105,12 +105,18 @@ namespace ProyectoFinal
 
         public void ModificarStock(int codigoProducto, int stock)
         {
+            // Creo una variable booleana que me diga si el codigo del producto que ingresé existe en la seccion
+            bool existeProducto = false;
+
             // Itero producto por producto en la lista de productos de la seccion
             foreach (IProducto producto in this.Productos)
             {
                 // En caso que el producto tenga el codigo indicado, modifico el stock y termino ejecución
                 if (producto.GetCodigo.Equals(codigoProducto))
                 {
+                    // Seteo la bandera booleana existeProducto a true
+                    existeProducto = true;
+
                     // En caso que la cantidad en stock ingresada desborde la capacidad de la sección, que levante una excepción
                     if (this.CantidadProductos + stock > this.Capacidad)
                     {
@@ -120,13 +126,19 @@ namespace ProyectoFinal
                     // En caso que la cantidad en stock que estoy pidiendo sea mayor a la que tengo, que levante una excepcion
                     if (this.CantidadStock(codigoProducto) + stock < 0)
                     {
-                        throw new StockInsuficienteExcepcion("Se está queriendo extraer una cantidad mayor de lo que se tiene en stock para ésta seccion");
+                        throw new StockInsuficienteExcepcion($"Para el còdigo de producto {codigoProducto} tiene únicamente {this.CantidadStock(codigoProducto)} disponibles en stock.");
                     }
 
                     // Modifico el stock del producto
                     this.ListaProductos[producto] += stock;
                     break;
                 }
+            }
+
+            // En caso que el producto no exista en la sección, que me levante una excepción
+            if (!existeProducto)
+            {
+                throw new Exception($"El producto de código {codigoProducto} no existe en ésta seccion");
             }
         }
 

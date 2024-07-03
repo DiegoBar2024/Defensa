@@ -7,21 +7,40 @@ namespace ProyectoFinal
     /// <summary>
     /// Creo una clase BuscadorDepositos que se encargue de buscar depositos en base a un nombre
     /// Se utiliza el patrón Polimorfismo (leer archivo readme para más detalles).
+    /// Aplicamos el patrón SINGLETON para ésta clase
     /// </summary>
     public class BuscadorDepositos : IBuscador<IDeposito>
     {
         /// <summary>
         /// Atributos de la clase
         /// </summary>
-        private string NombreDeposito;
+        private static string NombreDeposito;
+
+        private static BuscadorDepositos buscadorDepositos;
 
         /// <summary>
         /// Constructor de la clase
         /// </summary>
         /// <param name="nombreDeposito">Nombre del depósito a buscar</param>
-        public BuscadorDepositos(string nombreDeposito)
+        private BuscadorDepositos()
         {
-            this.NombreDeposito = nombreDeposito;
+        }
+
+        // Creo un método estático público el cual haga la función de obtener la instancia de Singleton
+        public static IBuscador<IDeposito> GetBuscadorDepositos(string nombreDeposito)
+        {
+            // En caso que no tenga ningún buscador de depósitos creo uno
+            if (buscadorDepositos == null)
+            {
+                // Llamo al constructor privado para crear el nuevo buscador de depósitos
+                BuscadorDepositos.buscadorDepositos = new BuscadorDepositos();
+            }
+
+            // Asigno el nombre del depósito
+            BuscadorDepositos.NombreDeposito = nombreDeposito;
+
+            // En otro caso devuelvo el mismo buscador de depósitos
+            return buscadorDepositos;
         }
 
         /// <summary>
@@ -37,7 +56,7 @@ namespace ProyectoFinal
                 /// En caso que el nombre del depósito sea el que estoy buscando, que me retorne el depósito
                 /// </summary>
                 /// <returns>El depósito buscado por nombre</returns>
-                if (string.Equals(deposito.GetNombre, this.NombreDeposito))
+                if (string.Equals(deposito.GetNombre, BuscadorDepositos.NombreDeposito))
                 {
                     return deposito;
                 }
@@ -51,4 +70,3 @@ namespace ProyectoFinal
         }
     }
 }
-

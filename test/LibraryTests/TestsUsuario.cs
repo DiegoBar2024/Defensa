@@ -36,7 +36,7 @@ namespace Tests
             /// Creo un usuario
             /// </summary>
             /// <returns></returns>
-            usuario = new Usuario("usuario");
+            usuario = new Usuario("usuario", new List<string>(){});
         }
         /// <summary>
         /// Limpieza de depósitos
@@ -116,7 +116,7 @@ namespace Tests
             }
 
             // Delego la responsabilidad de disminuir el stock de una venta a VentaTotal
-            ventaTotal.DisminuirStockTotal();
+            ventaTotal.DisminuirStockTotal(null);
 
             // Delego la responsabilidad de agregar una venta por fecha a la clase ContenedorVentasPorFecha
             ContenedorVentasPorFecha.AgregarVentaPorFecha(ventaTotal, fechaVenta);
@@ -130,7 +130,7 @@ namespace Tests
         public void DarAltaProducto()
         {
             // Creo un depósito
-            admin.CrearDeposito("nuevoDeposito", "ubicacion", 100, 100);
+            admin.CrearDeposito("nuevoDeposito", "ubicacion", 100);
 
             // Creo una seccion
             admin.CrearSeccion("nuevaSeccion", 100, "nuevoDeposito");
@@ -143,6 +143,9 @@ namespace Tests
 
             // Stock de producto que voy a dar de alta
             int stock = 10;
+
+            // Instancio un nuevo usuario con los permisos correspondientes
+            usuario = new Usuario("usuario", new List<string>() {"nuevoDeposito"});
 
             // El usuario da de alta un producto
             usuario.AltaProducto("nuevoProducto", 100, codigo, "marca1", categorias, "nuevaSeccion", "nuevoDeposito", stock);
@@ -194,7 +197,7 @@ namespace Tests
         public void RealizarVentaUnProducto()
         {
             // Creo un depósito
-            admin.CrearDeposito("miDeposito", "ubicacion", 100, 100);
+            admin.CrearDeposito("miDeposito", "ubicacion", 100);
 
             // Creo una seccion
             admin.CrearSeccion("miSeccion", 100, "miDeposito");
@@ -207,6 +210,9 @@ namespace Tests
 
             // Stock de producto que voy a dar de alta
             int stock = 50;
+            
+            // Instancio un nuevo usuario con los permisos correspondientes
+            usuario = new Usuario("usuario", new List<string>() {"miDeposito"});
 
             // El usuario da de alta un producto
             usuario.AltaProducto("miProducto", 100, codigo, "marca1", categorias, "miSeccion", "miDeposito", stock);
@@ -259,7 +265,7 @@ namespace Tests
         public void RealizarVentaDosProductos()
         {
             // Creo un depósito
-            admin.CrearDeposito("miDeposito1", "ubicacion", 100, 100);
+            admin.CrearDeposito("miDeposito1", "ubicacion", 100);
 
             // Creo una seccion
             admin.CrearSeccion("miSeccion1", 100, "miDeposito1");
@@ -281,6 +287,9 @@ namespace Tests
 
             // Stock de producto 2 que voy a dar de alta
             int stock2 = 10;
+
+            // Instancio un nuevo usuario con los permisos correspondientes
+            usuario = new Usuario("usuario", new List<string>() {"miDeposito1"});
 
             // El usuario da de alta producto 1
             usuario.AltaProducto("producto1", 100, codigo1, "marca1", categorias1, "miSeccion1", "miDeposito1", stock1);

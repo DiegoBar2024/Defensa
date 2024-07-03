@@ -35,7 +35,7 @@ namespace Tests
             /// Creo un usuario
             /// </summary>
             /// <returns></returns>
-            usuario = new Usuario("usuario");
+            usuario = new Usuario("usuario", new List<string>(){});
         }
 
         /// <summary>
@@ -56,7 +56,7 @@ namespace Tests
         public void TestModificarStock()
         {
             // Creo un depósito
-            admin.CrearDeposito("nuevoDeposito", "ubicacion", 100, 100);
+            admin.CrearDeposito("nuevoDeposito", "ubicacion", 100);
 
             // Creo una seccion
             admin.CrearSeccion("nuevaSeccion", 100, "nuevoDeposito");
@@ -72,6 +72,9 @@ namespace Tests
 
             // Stock de producto que voy a dar de alta
             int stock = 10;
+
+            // Instancio un nuevo usuario con los permisos correspondientes
+            usuario = new Usuario("usuario", new List<string>() {"nuevoDeposito"});
 
             // El usuario da de alta un producto
             usuario.AltaProducto("nuevoProducto", 100, codigo, "marca1", categorias, "nuevaSeccion", "nuevoDeposito", stock);

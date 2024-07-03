@@ -1,0 +1,138 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Library</name>
+    </assembly>
+    <members>
+        <member name="T:ProyectoFinal.Autenticacion">
+            <summary>
+            Clase responsable de la autenticación de diferentes tipos de funcionarios: administrador, usuario y proveedor.
+            Genera códigos aleatorios para cada tipo de funcionario y los almacena en un diccionario.
+            </summary>
+        </member>
+        <member name="F:ProyectoFinal.Autenticacion.codigos">
+            <summary>
+            Diccionario que almacena los códigos de autenticación con el tipo de funcionario como clave.
+            </summary>
+            <typeparam name="string"></typeparam>
+            <typeparam name="string"></typeparam>
+            <returns></returns>
+        </member>
+        <member name="M:ProyectoFinal.Autenticacion.Autenticar">
+            <summary>
+            Genera códigos de autenticación aleatorios para los distintos tipos de funcionarios y los guarda en el diccionario.
+            </summary>
+        </member>
+        <member name="M:ProyectoFinal.Autenticacion.ObtenerPIN(System.String)">
+            <summary>
+            Obtiene el código de autenticación para un tipo específico de funcionario
+            </summary>
+            <param name="tipoFuncionario"></param>
+            <returns></returns>
+        </member>
+        <member name="T:ProyectoFinal.BuscadorDepositos">
+            <summary>
+            Creo una clase BuscadorDepositos que se encargue de buscar depositos en base a un nombre
+            </summary>
+        </member>
+        <member name="F:ProyectoFinal.BuscadorDepositos.NombreDeposito">
+            <summary>
+            Atributos de la clase
+            </summary>
+        </member>
+        <member name="M:ProyectoFinal.BuscadorDepositos.#ctor(System.String)">
+            <summary>
+            Constructor de la clase
+            </summary>
+            <param name="nombreDeposito"></param>
+        </member>
+        <member name="M:ProyectoFinal.BuscadorDepositos.Buscar">
+            <summary>
+            Creo un método que me traduzca un nombre de deposito en un deposito
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:ProyectoFinal.BuscadorProductos">
+            <summary>
+            Creo una clase BuscadorProductos que se encargue de buscar productos en base a codigos de entrada
+            </summary>
+        </member>
+        <member name="F:ProyectoFinal.BuscadorProductos.CodigoProducto">
+            <summary>
+            Atributos de la clase
+            </summary>
+        </member>
+        <member name="M:ProyectoFinal.BuscadorProductos.#ctor(System.Int32)">
+            <summary>
+            Constructor de la clase
+            </summary>
+            <param name="codigoProducto"></param>
+        </member>
+        <member name="M:ProyectoFinal.BuscadorProductos.Buscar">
+            <summary>
+            Creo un método que me busque un producto por código
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:ProyectoFinal.BuscadorSecciones">
+            <summary>
+            Creo una clase BuscadorSecciones que se encargue de buscar secciones en base a datos de entrada
+            </summary>
+        </member>
+        <member name="F:ProyectoFinal.BuscadorSecciones.NombreDeposito">
+            <summary>
+            Atributos nombreDeposito y nombreSeccion
+            </summary>
+        </member>
+        <member name="M:ProyectoFinal.BuscadorSecciones.#ctor(System.String,System.String)">
+            <summary>
+            Constructor de la clase
+            </summary>
+            <param name="nombreDeposito"></param>
+            <param name="nombreSeccion"></param>
+        </member>
+        <member name="M:ProyectoFinal.BuscadorSecciones.Buscar">
+            <summary>
+            Creo un método que me traduzca un código de producto a nombre de producto
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:ProyectoFinal.ContenedorDepositos.AgregarDeposito(System.String,System.String,System.Int32,System.Double)">
+            <summary>
+            Uso el patrón Creator para asignar la responsabilidad de la creación de un depósito a ésta clase
+            que contiene múltiples objetos Deposito
+            </summary>
+            <param name="nombre"></param>
+            <param name="ubicacion"></param>
+            <param name="capacidad"></param>
+            <param name="distancia"></param>
+            <returns></returns>
+        </member>
+        <member name="P:ProyectoFinal.ContenedorDepositos.GetDepositos">
+            <summary>
+            Creo un método getter que me permita acceder a los depósitos externamente
+            </summary>
+            <value></value>
+        </member>
+        <member name="M:ProyectoFinal.ContenedorProveedores.AltaProveedor(System.String)">
+            <summary>
+            Uso el patrón Creator para crear un proveedor en base a los datos de entrada
+            </summary>
+            <param name="nombre"></param>
+            <returns></returns>
+        </member>
+        <member name="P:ProyectoFinal.ContenedorProveedores.GetProveedores">
+            <summary>
+            Método getter para la lista de proveedores
+            </summary>
+            <value></value>
+        </member>
+        <member name="M:ProyectoFinal.ContenedorUsuarios.AltaUsuario(System.String)">
+            <summary>
+            Usando el patrón Creator agrego un usuario a la lista usando los parámetros dados de entrada
+            </summary>
+            <param name="nombre"></param>
+            <returns></returns>
+        </member>
+    </members>
+</doc>

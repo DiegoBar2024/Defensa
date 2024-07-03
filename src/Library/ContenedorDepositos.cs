@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Text;
 using System.Xml.Serialization;
 
 namespace ProyectoFinal
@@ -21,13 +22,13 @@ namespace ProyectoFinal
         /// <param name="capacidad">Capacidad del depósito</param>
         /// <param name="distancia">Distancia depósitos</param>
         /// <returns></returns>
-        public static IDeposito AgregarDeposito(string nombre, string ubicacion, int capacidad, double distancia)
+        public static IDeposito AgregarDeposito(string nombre, string ubicacion, int capacidad)
         {
             /// <summary>
             /// Creo el depósito con los parámetros de entrada
             /// </summary>
             /// <returns>El depósito</returns>
-            IDeposito deposito = new Deposito(nombre, ubicacion, capacidad, distancia);
+            IDeposito deposito = new Deposito(nombre, ubicacion, capacidad);
 
             // Agrego el depósito a la lista de depositos
             ContenedorDepositos.Depositos.Add(deposito);
@@ -57,6 +58,25 @@ namespace ProyectoFinal
             {
                 return ContenedorDepositos.Depositos;
             }
+        }
+
+        /// <summary>
+        /// Creo un metodo que me devuelva los nombres de todos los depositos usando Expert
+        /// </summary>
+        /// <returns></returns>
+        public static string NombresDepositos()
+        {
+            // Creo un StringBuilder que me almacene la cadena a imprimir
+            StringBuilder stringBuilder = new StringBuilder("Los depósitos existentes son los siguientes:");
+
+            // Itero deposito por deposito en la lista de depositos
+            foreach (IDeposito deposito in ContenedorDepositos.Depositos)
+            {
+                stringBuilder.AppendLine($"- {deposito.GetNombre}");
+            }
+
+            // Retorno la cadena correspondiente
+            return stringBuilder.ToString();
         }
     }
 }

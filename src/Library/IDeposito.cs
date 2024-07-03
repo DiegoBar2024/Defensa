@@ -11,14 +11,21 @@ namespace ProyectoFinal
     public interface IDeposito
     {
         /// <summary>
+        /// Se obtiene laubicacion del depósito
+        /// </summary>
+        /// <value>ubicacion del depósito</value>
+        string GetUbicacion {get; }
+
+        /// <summary>
         /// Se obtiene nombre del depósito
         /// </summary>
         /// <value>Nombre del depósito</value>
         string GetNombre { get; }
+
         /// <summary>
-        /// Se obtienen las secciones dentro del depósito 
+        /// Se obtiene la ubicación del depósito
         /// </summary>
-        /// <value>Secciones dentro del depósito</value>
+        /// <value>Ubicación del deposito</value>
         IEnumerable GetSecciones { get; }
         /// <summary>
         /// Creación de una sección dentro del depósito 

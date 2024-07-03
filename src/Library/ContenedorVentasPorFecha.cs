@@ -59,7 +59,14 @@ namespace ProyectoFinal
             {
                 ContenedorVentasPorFecha.VentasPorFecha[fechaVenta] = new List<VentaTotal>() {ventaTotal};
             }
+        }
 
+        /// <summary>
+        /// Creo un metodo que me permita eliminar las ventas realizadas (para el test)
+        /// </summary>
+        public static void EliminarVentas()
+        {
+            ContenedorVentasPorFecha.VentasPorFecha.Clear();
         }
     }
 }
