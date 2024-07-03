@@ -178,5 +178,19 @@ namespace ProyectoFinal
                         // EXPERT --> Delego la responsabilidad de obtener los nombres de todos los depositos a la clase ContenedorDepositos
                         return ContenedorDepositos.NombresDepositos();
                 }
+
+                public void EliminarCodigoProducto(int codigoProducto)
+                {
+                        // Itero deposito por deposito en la lista de depositos existentes
+                        foreach (IDeposito deposito in ContenedorDepositos.GetDepositos)
+                        {
+                                // Itero sección por sección en la lista de secciones existentes
+                                foreach (ISeccion seccion in deposito.GetSecciones)
+                                {
+                                        // Le digo a la sección que de de baja el producto
+                                        seccion.EliminarCodigo(codigoProducto);
+                                }
+                        }
+                }
         }
 }

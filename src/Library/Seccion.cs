@@ -191,5 +191,19 @@ namespace ProyectoFinal
                 return cantidadProductos;
             }
         }
+
+        public void EliminarCodigo(int codigoProducto)
+        {
+            // Itero producto por producto en la lista de productos
+            foreach (IProducto producto in this.ListaProductos.Keys)
+            {
+                // En caso que el producto exista en ésta sección, lo doy de baja
+                if (producto.GetCodigo.Equals(codigoProducto))
+                {
+                    // Elimino el producto
+                    this.ListaProductos.Remove(producto);
+                }
+            }
+        }
     }
 }

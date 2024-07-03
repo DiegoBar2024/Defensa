@@ -55,6 +55,8 @@ namespace ProyectoFinal
         /// <returns>Cantidad de stock de un producto</returns>
         int CantidadStock(int codigoProducto);
 
+        void EliminarCodigo(int codigoProducto);
+
         /// <summary>
         /// Cantidad de productos en total
         /// </summary>

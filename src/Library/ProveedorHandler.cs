@@ -150,7 +150,7 @@ namespace Ucu.Poo.TelegramBot
                 {
                     // Delego la búsqueda del producto al Intermediario
                     string result = IntermediarioProveedor.VisualizarStock(codigoProducto);
-                    
+
                     // Hago que el bot retorne el mensaje adecuado
                     response = $"{result}\n{PROVEEDOR_MENSAJE}";
                 }
