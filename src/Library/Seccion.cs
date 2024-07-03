@@ -95,6 +95,22 @@ namespace ProyectoFinal
             // Si no existe ningún producto, que retorne 0
             return 0;
         }
+        
+        public int CantidadStock(string nombreProducto)
+        {
+            // En caso que se haya dado de alta el producto alguna vez en la sección, que me devuelva la cantidad correspondiente
+            foreach (IProducto producto in this.ListaProductos.Keys)
+            {
+                // Si hay un producto cuyo codigo coincide con el ingresado, que pare
+                if (producto.GetNombre.Equals(nombreProducto))
+                {
+                    return this.ListaProductos[producto];
+                }
+            }
+
+            // Si no existe ningún producto, que retorne 0
+            return 0;
+        }
 
         /// <summary>
         /// Creo un método que me permita modificar el stock de un producto ya existente

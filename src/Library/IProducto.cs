@@ -16,6 +16,8 @@ namespace ProyectoFinal
         /// </summary>
         /// <value>El código del producto</value>
         int GetCodigo { get; }
+
+        string GetNombre { get; }
         
         /// <summary>
         /// Se obtienen las categorías de los productos

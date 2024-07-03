@@ -35,7 +35,7 @@ namespace ProyectoFinal
         /// </summary>
         /// <param name="codigo">Código del producto</param>
         /// <returns>Diccionario que tiene el stock total de un determinado producto</returns>
-        public string VisualizarStock(int codigo)
+        public string VisualizarStock(string nombreProducto)
         {
             // Creo una cadena en donde voy a almacenar el resultado
             StringBuilder cadenaStock = new StringBuilder();
@@ -49,7 +49,7 @@ namespace ProyectoFinal
                 foreach (ISeccion seccion in deposito.GetSecciones)
                 {
                     // Agrego una cadena con la cantidad en stock del mismo
-                    cadenaStock.AppendLine($"   Cantidad en stock sección '{seccion.GetNombre}': {seccion.CantidadStock(codigo)}");
+                    cadenaStock.AppendLine($"   Cantidad en stock sección '{seccion.GetNombre}': {seccion.CantidadStock(nombreProducto)}");
                 }
             } 
 
